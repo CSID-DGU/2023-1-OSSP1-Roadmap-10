@@ -14,7 +14,6 @@ export const hideMarker = (map,markers,iW,path) =>{
                 path.setMap(null)
             })
         }
-        return markers
     }
 }
 export const showMarker = (map,markers,path) =>{
@@ -30,6 +29,5 @@ export const showMarker = (map,markers,path) =>{
                 path.setMap(map)
             })
         }
-        return markers
     }
 }
