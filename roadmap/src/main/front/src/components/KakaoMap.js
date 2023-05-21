@@ -1,39 +1,47 @@
 /*global kakao*/
 import React,{useEffect, useState} from "react";
 import LocList from "../components/buildinginfo";
+import drawLine from "./Line";
+import moveCenter from "./moveCenter";
+import {hideMarker, showMarker} from "./hideMarker";
 import selectBuilding from "../components/Dropdown"
 
 
 const { kakao } = window;
 const loc = LocList();
 
-
 function KakaoMap(props) {
 
     const [map,settingMap] = useState(null);
     const [path, setPath] = useState([]);
-    const [markers,addMarkers] = useState([])
+    const [markers,setMarkers] = useState([])
     const [iW,addIW] = useState([])
     const [stateBtn,changeBtn] = useState(false)
 
     const [selectStart, setSelectStart] = useState(null)
     const [selectFinish, setSelectFinish] = useState(null)
-    const [bothNode, setBothNode] = useState([])//출발점과 도착점
+    const [bothNode, setNode] = useState([null,null])//출발점과 도착점
 
     const [selectStop,setSelectStop] = useState(null)
     const [stopNode,setStopNode] = useState([])
 
     const addNewMarker = (newMarker) =>{
-        addMarkers((prevMarker) => [...prevMarker, newMarker])
+        setMarkers((prevMarker) => [...prevMarker, newMarker])
+    }
+    const cngMarker = (newMarker) =>  {
+        setMarkers(newMarker)
     }
     const addNewIW = (newInfoWindow) =>{
         addIW((previW) => [...previW, newInfoWindow])
     }
-    const addNewNode = (newNode) => {
-        setBothNode((prevNode) => [...prevNode, newNode])
+    const addNewFinishNode = (newNode) => {
+        setNode([bothNode[0],newNode])
+    }
+    const addNewStartNode = (newNode) => {
+        setNode([newNode,bothNode[1]])
     }
     const clearNode = () => {
-        setBothNode([])
+        setNode([null,null])
     }
     const addNewPath = (newPath) =>{
         setPath((prevPath) => [...prevPath,newPath])
@@ -79,7 +87,7 @@ function KakaoMap(props) {
     useEffect(() => {
         const script = document.createElement("script");
         script.async = true;
-        script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=5ce648fa9f3da578c51590ab2e03f17b&autoload=false';
+        script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=4df16387a395762838f3f668c6731805&autoload=false';
 
         
         script.onload = () => {
@@ -91,7 +99,17 @@ function KakaoMap(props) {
                 };
                 const newMap = new window.kakao.maps.Map(container, options)
                 settingMap(newMap);
+                
+                const markerArray = [];
+                const iWArray = [];
+                if(markers.length !== 0 && iW.length !== 0){
+                    markers.map((marker) => {
+                        marker.setMap(newMap)
+                        markerArray.push(marker)
+                    })
+                }else{
 
+                }
                 loc.map((building) =>  {
                     const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
                     const newMarker = new window.kakao.maps.Marker({
@@ -103,26 +121,110 @@ function KakaoMap(props) {
 
                 const contents = document.createElement('div');
                 
-                const container = document.createElement('container')
+                const text = document.createElement('text')
                 contents.textContent =(building.explain)
                 /*const button = document.createElement('div')
                 button.innerHTML = ('<div><button onClick = {startNode}>출발</button><button onClick = {finishNode}>도착</button></div>')
 
                 contents.appendChild(button)*/
-                container.appendChild(contents)
+                text.appendChild(contents)
 
                 const newInfoWindow = new window.kakao.maps.InfoWindow({
-                    content : container,
+                    content : text,
                     removable : true
                 })
 
                 window.kakao.maps.event.addListener(newMarker, 'click', function(){
                     newInfoWindow.open(newMap,newMarker)
                 })
+                
                 addNewMarker(newMarker);
                 addNewIW(newInfoWindow);
-
+                markerArray.push(newMarker);
+                iWArray.push(newInfoWindow);
                 })
+
+                var mapTypeControl = new window.kakao.maps.MapTypeControl()
+                newMap.addControl(mapTypeControl, window.kakao.maps.ControlPosition.TOPRIGHT);
+
+                const addStartNode = (e) => {
+                    startNode(e)
+                }
+                const addFinishNode = (e) => {
+                    finishNode(e)
+                }
+
+                const deleteLine = () =>{
+                    if(newMap){
+                        if(path !== []){
+                            path.map((path) => {
+                                path.setMap(null)
+                            })
+                            clearPath()
+                        }
+                    }
+                }
+                const makeLine = () =>{
+                    if(newMap){
+                        deleteLine()
+                        addNewPath(drawLine(newMap))
+                    }
+                }
+                const center = () => {
+                    if(newMap){
+                        moveCenter(newMap)
+                    }
+                }
+                const hide = () =>{
+                    if(newMap && markers){
+                        cngMarker(hideMarker(newMap, markerArray, iWArray,path))
+                    }
+                    else{
+                        console.log("error")
+                    }
+                }
+                const show = () => {
+                    if(newMap && markers){
+                        cngMarker(showMarker(newMap, markerArray, path))
+                    }
+                    else{
+                        console.log("error")
+                    }
+                }
+                const control = document.createElement("div")
+
+                const buttonShowMarker = document.createElement("button")
+                buttonShowMarker.innerText = "마커 띄우기"
+                buttonShowMarker.addEventListener("click",show)
+
+                const buttonHideMarker = document.createElement("button")
+                buttonHideMarker.innerText = "마커 숨기기"
+                buttonHideMarker.addEventListener("click",hide)
+
+                const selectboxStart = document.createElement("select")
+                selectboxStart.innerHTML = loc.map((building) => `<option key = ${building.code} value = ${building.id}>${building.id}</option>`).join("")
+                selectboxStart.addEventListener("change",addStartNode)
+
+                const selectboxFinish = document.createElement("select")
+                selectboxFinish.innerHTML = loc.map((building) => `<option key = ${building.code} value = ${building.id}>${building.id}</option>`).join("")
+                selectboxFinish.addEventListener("change", addFinishNode)
+
+                const buttonCenter = document.createElement("button")
+                buttonCenter.innerText = "중심으로 이동"
+                buttonCenter.addEventListener("click",center);
+
+                const buttonMakeLine = document.createElement("button")
+                buttonMakeLine.innerText = "경로 탐색"
+                buttonMakeLine.addEventListener("click",makeLine)
+
+                control.appendChild(buttonShowMarker)
+                control.appendChild(buttonHideMarker)
+                control.appendChild(buttonCenter)
+                control.appendChild(selectboxStart)
+                control.appendChild(selectboxFinish)
+                control.appendChild(buttonMakeLine)
+
+                newMap.addControl(control, window.kakao.maps.ControlPosition.TOPLEFT)
             });
         };
 
@@ -134,18 +236,15 @@ function KakaoMap(props) {
     }, []);
 
     useEffect(() => {
-        if(selectFinish !== null && selectStart !== null){
+        if(selectFinish&& selectStart){
             if(bothNode.length !== 0){
                 clearNode()
             }
-            /*const start = loc.find((building) => building.id === selectStart)
-            const finish = loc.find((building) => building.id === selectFinish)*/
 
-            addNewNode(loc.find((building) => building.id === selectStart));
-            addNewNode(loc.find((building) => building.id === selectFinish));
+            addNewStartNode(loc.find((building) => building.id === selectStart));
+            addNewFinishNode(loc.find((building) => building.id === selectFinish));
+            console.log(bothNode)
 
-            console.log(selectStart)
-            console.log(selectFinish)
             setBtn(false)
         }else{
             setBtn(true)
@@ -157,16 +256,7 @@ function KakaoMap(props) {
         }
     },[selectStart,selectFinish])
 
-
-    const moveCenter = () => {
-        if (map){
-            const center = new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng); // 새로운 중심 좌표 설정
-            map.setCenter(center);
-        }
-        else{
-            console.log("map을 못 읽음 Center");
-        }
-    };
+    
     
     const deleteLine = () =>{
         if(map){
@@ -176,70 +266,6 @@ function KakaoMap(props) {
                 })
                 clearPath()
             }
-        }
-    }
-    const showMarker = () =>{
-        if(map){
-            console.log(markers.length)
-            console.log(markers)
-            markers.map((marker) => {
-                marker.setMap(map)
-                console.log("마커 띄우기")
-            })
-            if(path !== []){
-                path.map((path) => {
-                    path.setMap(map)
-                })
-            }
-        }
-    }
-
-    const hideMarker = () =>{
-        if(map){
-            console.log(markers.length)
-            
-            markers.map((marker) => {
-                marker.setMap(null)
-                console.log("마커 숨기기")
-            })
-            iW.map((infowindow) => {
-                infowindow.close()
-            })
-            if(path !== []){
-                path.map((path) => {
-                    path.setMap(null)
-                })
-            }
-        }
-    }
-
-    const makeLine = () =>{
-        if(map){
-            deleteLine();
-
-            const [first, last] = bothNode
-
-            const pathNode = []
-            pathNode.push(new window.kakao.maps.LatLng(first.Lat, first.Lng))
-            stopNode.map((node) => {
-                const newPath = loc.find((building) => building.id === node)
-                pathNode.push(new window.kakao.maps.LatLng(newPath.Lat,newPath.Lng))
-            })
-            pathNode.push(new window.kakao.maps.LatLng(last.Lat, last.Lng))
-            /*bothNode.map((building) => {
-                pathNode.push(new window.kakao.maps.LatLng(building.Lat, building.Lng))
-            })*/
-            
-        
-            const newPath = new window.kakao.maps.Polyline({
-                path: pathNode,
-                strokeWeight: 5, 
-                strokeColor: '#FFAE00', 
-                strokeOpacity: 1, 
-                strokeStyle: 'solid' 
-            })
-            newPath.setMap(map)
-            addNewPath(newPath)
         }
     }
 
@@ -252,72 +278,23 @@ function KakaoMap(props) {
         return (
             <div>
                 <div>
-                <div id="map" style={{ width: '100%', height: '400px' }}></div>
-                <button onClick = {moveCenter}>중심으로 이동</button>
-                <button onClick = {showMarker}>마커 띄우기</button>
-                <button onClick = {hideMarker}>마커 숨기기</button>
+                <div id="map" style={{ width: '100%', height: '400px' }}>
                 </div>
-                <div>
-                <span>출발지 : </span>
-                <select value = {selectStart} onChange ={startNode}>
-                    <option key = 'default' value = {null} disabled selected>=====</option>
-                    {loc.map((building) => {
-                    return(
-                    <option key = {building.code} value = {building.id}>{building.id}</option>
-                    )})}
-                </select>
-                <span> 도착지 : </span>
-                <select value = {selectFinish} onChange ={finishNode}>
-                    <option key = 'default' value = {null} disabled = {true} selected>=====</option>
-                    {loc.map((building) => {
-                    return(
-                    <option key = {building.code} value = {building.id}>{building.id}</option>
-                    )})}
-                </select>
-                <span> 경유지 : </span>
-                <select value = {selectStop} onChange ={stopOverNode} disabled = {stateBtn}>
-                    <option key = 'default' value = {null} disabled = {true} selected>=====</option>
-                    {loc.map((building) => {
-                    return(
-                    <option key = {building.code} value = {building.id}>{building.id}</option>
-                    )})}
-                </select>
-                <button onClick={addStopNode} disabled = {stateBtn}>
-                    추가
-                </button>
-                <button disabled = {stateBtn} onClick = {clearStopNode}>
-                    경유지 제거
-                </button>
+                </div>
                 <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
                 <p> 경유지 : {stopNode}</p>
-                <button disabled = {stateBtn} onClick = {makeLine}>
-                    경로 탐색
-                </button>
                 <button disabled = {stateBtn} onClick = {deleteLine}>
                     선 지우기
                 </button>
                 <button disabled = {stateBtn} onClick = {allDelete}>
                     초기화
                 </button>
-                
-                </div>
             </div>
         )
     }
     else if(props.page === "convenient"){
         return (
             <div>
-                <div id="map" style={{ width: '100%', height: '400px' }}></div>
-                <button onClick = {moveCenter}>중심으로 이동</button>
-                <button onClick = {makeLine}>선 만들기</button>
-                <select>{loc.map((building) => {
-                    return(
-                    <option key = {building.code} value = {building.id}>{building.id}</option>
-                    )})}</select>{loc.map((building) =>{
-                    return(
-                    <li>{building.Lat},{building.Lng}</li>
-                    )
-                })}
                 <p>여긴 편의시설 페이지</p>
             </div>
             );
