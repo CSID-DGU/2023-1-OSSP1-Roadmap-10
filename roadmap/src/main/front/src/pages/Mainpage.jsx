@@ -1,5 +1,4 @@
 import NavBar from "../components/Navbar.jsx";
-import Footer from "../components/Footer.jsx"
 
 function Main() {
   return (
@@ -8,7 +7,6 @@ function Main() {
         <h>
             Hello! This is New Roadmap MainPage!
         </h>
-        <Footer></Footer>
     </div>
   );
 }

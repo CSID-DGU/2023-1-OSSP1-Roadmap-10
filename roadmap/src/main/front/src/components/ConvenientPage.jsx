@@ -4,6 +4,7 @@ import LocList from "./buildinginfo";
 import drawLine from "./Line";
 import moveCenter from "./moveCenter";
 import { hideMarker, showMarker } from "./Marker";
+import "./map.css"
 import selectBuilding from "./Dropdown"
 
 
@@ -160,20 +161,21 @@ function ConvenientPage() {
 
     return (
         <div>
-            <select onChange={startNode}>
+            <select className="box-style" onChange={startNode}>
                 <option selected disabled>출발지 선택</option>
                 {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
             </select>
-            <select onChange={finishNode}>
+            <select className="box-style" onChange={finishNode}>
                 <option selected disabled>도착지 선택</option>
                 {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
             </select>
-            <button onClick={makeLine}>경로 탐색</button>
-            <button onClick={changeStateMarker}>{buttonText}</button>
-            <div>
-                <div id="map" style={{ width: '100%', height: '400px' }}></div>
-            </div>
-            <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
+            <button className="button-style" onClick={makeLine}>경로 탐색</button>
+            <button className="button-style" onClick={changeStateMarker}>{buttonText}</button>
+            <button className="button-style" onClick={center}>중심으로 이동</button>
+            <span>
+                <div id="map" className="map-style"></div>
+                <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
+            </span>
         </div>
     )
     
