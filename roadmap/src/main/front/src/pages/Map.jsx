@@ -11,7 +11,7 @@ function Map(){
         <h>
             Hello! This is New Roadmap MapPage!
         </h>
-        <KakaoMap page = "map"></KakaoMap>
+        <KakaoMap></KakaoMap>
         <Footer></Footer>
     </div>
     )

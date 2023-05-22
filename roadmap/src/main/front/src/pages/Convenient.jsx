@@ -1,6 +1,7 @@
 import NavBar from "../components/Navbar.jsx";
 import Footer from "../components/Footer";
-import KakaoMap from "../components/KakaoMap.js";
+import KakaoMap from "../components/KakaoMap.jsx";
+import ConvenientPage from "../components/ConvenientPage.jsx";
 
 
 function Convenient() {
@@ -10,7 +11,7 @@ function Convenient() {
     <h>
         Hello! This is New Roadmap ConvenientPage!
     </h>
-    <KakaoMap page = "convenient"></KakaoMap>
+    <ConvenientPage></ConvenientPage>
     <Footer></Footer>
     </div>
   );
