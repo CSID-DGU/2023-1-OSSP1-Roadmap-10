@@ -1,6 +1,5 @@
 import NavBar from "../components/Navbar.jsx";
 import Footer from "../components/Footer";
-import KakaoMap from "../components/KakaoMap.jsx";
 import ConvenientPage from "../components/ConvenientPage.jsx";
 
 

@@ -2,7 +2,7 @@ import LocList from "./buildinginfo"
 
 const loc = LocList()
 
-const drawLine = (map,bothNode,stopNode) => {
+const drawLine = (map,bothNode) => {
     const node = [
 
     ]
@@ -11,13 +11,8 @@ const drawLine = (map,bothNode,stopNode) => {
 
     console.log(bothNode)
     node.push(loc.find((building) => building.id === bothNode[0]))
-    
-    stopNode.map((path) => {
-        node.push(loc.find((building) => building.id === path))
-    })
     node.push(loc.find((building) => building.id === bothNode[1]))
     console.log(node)
-    console.log(stopNode)
     node.map((coord) => {
         path.push(new window.kakao.maps.LatLng(coord.Lat, coord.Lng))
     })

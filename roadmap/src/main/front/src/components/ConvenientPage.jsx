@@ -4,7 +4,6 @@ import LocList from "./buildinginfo";
 import drawLine from "./Line";
 import moveCenter from "./moveCenter";
 import { hideMarker, showMarker } from "./Marker";
-import "./controlStyle.css"
 import selectBuilding from "./Dropdown"
 
 
