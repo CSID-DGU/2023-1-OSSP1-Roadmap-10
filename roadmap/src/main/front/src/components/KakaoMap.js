@@ -4,6 +4,7 @@ import LocList from "../components/buildinginfo";
 import drawLine from "./Line";
 import moveCenter from "./moveCenter";
 import { hideMarker, showMarker } from "./hideMarker";
+import "./controlStyle.css"
 import selectBuilding from "../components/Dropdown"
 
 
@@ -14,19 +15,14 @@ function KakaoMap(props) {
 
     const [map, settingMap] = useState(null);
     const [render1,setRender1] = useState(true);
-    const [path, setPath] = useState([]);
     const [markers, setMarkers] = useState([])
     const [iW, addIW] = useState([])
-    const [control, setControl] = useState(null)
-
-    const [stateBtn, changeBtn] = useState(false)
 
     const [selectStart, setSelectStart] = useState(null)
     const [selectFinish, setSelectFinish] = useState(null)
     const [bothNode, setNode] = useState([null,null])//출발점과 도착점
 
-    const [stopNode, setStopNode] = useState([])
-
+    const [stopNodes, setStopNode] = useState([])
     const addNewMarker = (newMarker) => {
         setMarkers((prevMarker) => [...prevMarker, newMarker])
     }
@@ -36,47 +32,20 @@ function KakaoMap(props) {
     const addNewIW = (newInfoWindow) => {
         addIW((previW) => [...previW, newInfoWindow])
     }
-    const addNewPath = (newPath) => {
-        setPath((prevPath) => [...prevPath, newPath])
-    }
-    const clearPath = () => {
-        setPath([]);
-    }
-    const clearStopNode = () => {
-        setStopNode([])
-    }
-    const addBothNode = (newNode) => {
-        setNode((prevNode) => [...prevNode, newNode])
-    }
     const addStartNode = (newNode) => {
+        setSelectStart(newNode)
         setNode(bothNode[0] = newNode)
     }
     const addFinishNode = (newNode) => {
+        setSelectFinish(newNode)
         setNode(bothNode[1] = newNode)
     }
-    
-    const clearAll = () => {
-        setSelectStart(null)
-        setSelectFinish(null)
-        clearStopNode()
+    const addStopNode = (newNode) => {
+        setStopNode(stopNodes.push(newNode))
     }
-
-    const deleteLine = () => {
-        if (map) {
-            if (path !== []) {
-                path.map((path) => {
-                    path.setMap(null)
-                })
-                clearPath()
-            }
-        }
+    const deleteStopNode = () => {
+        setStopNode(stopNodes.splice(stopNodes.length - 1,1))
     }
-    
-    const allDelete = () => {
-        deleteLine()
-        clearAll()
-    }
-
     useEffect(() => {
         const markerArray = []
         const iWArray = []
@@ -128,6 +97,7 @@ function KakaoMap(props) {
                         markerArray.push(newMarker)
                         iWArray.push(newInfoWindow)
                     })
+
                     setRender1(false)
                     
                 }
@@ -143,14 +113,16 @@ function KakaoMap(props) {
 
     useEffect(() => {
         if(map){
-        
+            let currentPath = [
+
+            ]
             const deleteLine = () => {
                 if (map) {
-                    if (path !== []) {
-                        path.map((path) => {
+                    if (currentPath !== []) {
+                        currentPath.map((path) => {
                             path.setMap(null)
                         })
-                        clearPath()
+                        currentPath = []
                     }
                 }
             }
@@ -160,10 +132,25 @@ function KakaoMap(props) {
             const finishNode = (e) =>{
                 addFinishNode(e.target.value)
             }
+            const stopNode = (e) =>{
+                if(e.target.value === "경유지 선택"){
+                    console.log("value is error")
+                }else{
+                    console.log("실행됨")
+                    addStopNode(e.target.value)
+                }
+            }
+            const deleteStop = () =>{
+                deleteStopNode()
+            }
             const makeLine = () => {
                 if (map) {
-                    console.log("??안됨" + bothNode.length)
-                    addNewPath(drawLine(map,bothNode))
+                    deleteLine()
+                    try {
+                        currentPath.push((drawLine(map, bothNode, stopNodes)))
+                    } catch {
+                        console.log("drawline's error")
+                    }
                 }
             }
             const center = () => {
@@ -174,7 +161,11 @@ function KakaoMap(props) {
             const hide = ()=> {
                 if (map && markers) {
                     console.log("실행됨?")
-                    cngMarker(hideMarker(map, markers, iW, path))
+                    try {
+                        cngMarker(hideMarker(map, markers, iW, currentPath))
+                    } catch {
+                        console.log("hidemarker's error")
+                    }
                 }
                 else {
                     console.log("error")
@@ -182,31 +173,44 @@ function KakaoMap(props) {
             }
             const show = () => {
                 if (map && markers) {
-                    cngMarker(showMarker(map, markers, path))
+                    cngMarker(showMarker(map, markers, currentPath))
                 }
                 else {
                     console.log("error")
                 }
             }
-
-            const showLine = () => {
-                console.log(bothNode)
+            const check = () =>{
+                console.log(currentPath)
+                console.log(stopNodes)
             }
-            
+
+
             var mapTypeControl = new window.kakao.maps.MapTypeControl();
             map.addControl(mapTypeControl, window.kakao.maps.ControlPosition.TOPRIGHT);
 
             var zoomControl = new window.kakao.maps.ZoomControl();
             map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
             
-            const newControl = document.createElement("div")
-            const buttonShowMarker = document.createElement("button")
-            buttonShowMarker.innerText = "마커 띄우기"
+            const topleftControl = document.createElement("div")
+            topleftControl.classList.add("topleft-control");
+
+            const bottomleftControl = document.createElement("div")
+            bottomleftControl.classList.add("bottomleft-control");
+
+            const buttonShowMarker = document.createElement("show")
+            buttonShowMarker.innerHTML = `<button>띄우기</button>`
+            buttonShowMarker.classList.add("button-text")
             buttonShowMarker.addEventListener("click", show)
 
-            const buttonHideMarker = document.createElement("button")
-            buttonHideMarker.innerText = "마커 숨기기"
+            const buttonHideMarker = document.createElement("hide")
+            buttonHideMarker.innerHTML = `<button>숨기기</button>`
+            buttonHideMarker.classList.add("button-text")
             buttonHideMarker.addEventListener("click", hide)
+
+            const buttonCenter = document.createElement("centers")
+            buttonCenter.innerHTML = `<button>중심</button>`
+            buttonCenter.classList.add("button-text")
+            buttonCenter.addEventListener("click", center);
 
             const selectboxStart = document.createElement("select");
             const startOptions = loc.map((building) => `<option key=${building.code} value=${building.id}>${building.id}</option>`);
@@ -218,26 +222,43 @@ function KakaoMap(props) {
             selectboxFinish.innerHTML = `<option selected disabled>도착지 선택</option>${finishOptions.join("")}`;
             selectboxFinish.addEventListener("change", finishNode);
 
-            const buttonCenter = document.createElement("button")
-            buttonCenter.innerText = "중심으로 이동"
-            buttonCenter.addEventListener("click", center);
+            const selectboxStop = document.createElement("select");
+            const stopOptions = loc.map((building) => `<option key=${building.code} value=${building.id}>${building.id}</option>`);
+            selectboxStop.innerHTML = `<option selected disabled>경유지 선택</option>${stopOptions.join("")}`;
+            selectboxStop.addEventListener("change", stopNode);
 
             const buttonMakeLine = document.createElement("button")
             buttonMakeLine.innerText = "경로 탐색"
+            buttonMakeLine.classList.add("button-text")
             buttonMakeLine.addEventListener("click", makeLine)
+            
+            const buttonDeleteStop = document.createElement("button")
+            buttonDeleteStop.innerText = "경유지 삭제"
+            buttonDeleteStop.classList.add("button-text")
+            buttonDeleteStop.addEventListener("click", deleteStop)
 
-            const buttonShowLine = document.createElement("button")
-            buttonShowLine.innerText = "확인"
-            buttonShowLine.addEventListener("click", showLine)
+            const buttonCheck = document.createElement("button")
+            buttonCheck.innerText = "확인"
+            buttonCheck.classList.add("button-text")
+            buttonCheck.addEventListener("click", check)
 
-            newControl.appendChild(buttonShowMarker)
-            newControl.appendChild(buttonHideMarker)
-            newControl.appendChild(buttonCenter)
-            newControl.appendChild(selectboxStart)
-            newControl.appendChild(selectboxFinish)
-            newControl.appendChild(buttonMakeLine)
-            newControl.appendChild(buttonShowLine)
-            map.addControl(newControl, window.kakao.maps.ControlPosition.TOPLEFT)
+
+            topleftControl.appendChild(buttonShowMarker)
+            topleftControl.appendChild(buttonHideMarker)
+            topleftControl.appendChild(buttonCenter)
+
+            bottomleftControl.appendChild(selectboxStart)
+            bottomleftControl.appendChild(selectboxFinish)
+            bottomleftControl.appendChild(selectboxStop)
+            bottomleftControl.appendChild(buttonMakeLine)
+            bottomleftControl.appendChild(buttonDeleteStop)
+            bottomleftControl.appendChild(buttonCheck)
+            
+            
+
+            map.addControl(topleftControl, window.kakao.maps.ControlPosition.TOPLEFT)
+            map.addControl(bottomleftControl, window.kakao.maps.ControlPosition.BOTTOMLEFT)
+
         }
     },[map])
 
@@ -249,13 +270,7 @@ function KakaoMap(props) {
                     <div id="map" style={{ width: '100%', height: '400px' }}></div>
                 </div>
                 <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
-                <p> 경유지 : {stopNode}</p>
-                <button disabled={stateBtn} onClick={deleteLine}>
-                    선 지우기
-                </button>
-                <button disabled={stateBtn} onClick={allDelete}>
-                    초기화
-                </button>
+                <p> 경유지 : {stopNodes.length}</p>
             </div>
         )
     }

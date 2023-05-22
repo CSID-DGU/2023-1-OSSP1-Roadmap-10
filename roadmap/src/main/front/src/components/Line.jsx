@@ -2,20 +2,26 @@ import LocList from "./buildinginfo"
 
 const loc = LocList()
 
-const drawLine = (map,bothNode) => {
+const drawLine = (map,bothNode,stopNode) => {
     const node = [
 
     ]
     const path = [
     ]
+
     console.log(bothNode)
-    bothNode.map((path) => {
+    node.push(loc.find((building) => building.id === bothNode[0]))
+    
+    stopNode.map((path) => {
         node.push(loc.find((building) => building.id === path))
     })
+    node.push(loc.find((building) => building.id === bothNode[1]))
     console.log(node)
-
-    path.push(new window.kakao.maps.LatLng(node[0].Lat, node[0].Lng))
-    path.push(new window.kakao.maps.LatLng(node[1].Lat, node[1].Lng))
+    console.log(stopNode)
+    node.map((coord) => {
+        path.push(new window.kakao.maps.LatLng(coord.Lat, coord.Lng))
+    })
+    console.log(path)
 
 
     const newPath = new window.kakao.maps.Polyline({
