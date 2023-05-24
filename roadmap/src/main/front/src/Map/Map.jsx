@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
-import KakaoMap from "../components/KakaoMap.jsx";
-import NavBar from "../components/Navbar";
+import KakaoMap from "./KakaoMap.jsx";
+import NavBar from "../components/Navbar.jsx";
 
 function Map(){
 

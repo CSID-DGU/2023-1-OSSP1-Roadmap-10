@@ -1,18 +1,17 @@
 /*global kakao*/
 import React, { useEffect, useState,useRef } from "react";
-import axios from "axios"
-import LocList from "./buildinginfo";
-import drawLine from "./Line";
-import moveCenter from "./moveCenter";
-import { hideMarker, showMarker } from "./Marker";
+import LocList from "../data/buildinginfo";
+import drawLine from "../components/Line";
+import moveCenter from "../components/moveCenter";
+import { hideMarker, showMarker } from "../components/Marker";
 import "./map.css"
-import selectBuilding from "./Dropdown"
+import selectBuilding from "../components/Dropdown"
 
 
 const { kakao } = window;
 const loc = LocList();
 
-function KakaoMap() {
+function ConvenientPage() {
 
     const [map, settingMap] = useState(null);
     const [render1,setRender1] = useState(true);
@@ -68,7 +67,6 @@ function KakaoMap() {
                         center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
                         level: 3
                     };
-
                     const newMap = new window.kakao.maps.Map(container, options)
                     settingMap(newMap);
 
@@ -103,14 +101,11 @@ function KakaoMap() {
                         iWArray.push(newInfoWindow)
                     })
 
-
                     setRender1(false)
                     
                 }
             })
         };
-
-
         document.head.appendChild(script);
         return () => {
             document.head.removeChild(script);
@@ -119,6 +114,7 @@ function KakaoMap() {
     const deleteLine = () => {
         if (map) {
             if(path){
+                console.log("정상 실행")
                 path.setMap(null)
             }
             setPath()
@@ -156,23 +152,20 @@ function KakaoMap() {
                     path.setMap(null)
                 }
             }catch{
-                console.log("error?")
+                console.log("error")
             }
         }
 
     },[stateMarker])
-    const check = () =>{
-        console.log(bothNode)
-        console.log(path)
-    }
+
 
     return (
         <div>
-            <select className = "box-style" onChange={startNode}>
+            <select className="box-style" onChange={startNode}>
                 <option selected disabled>출발지 선택</option>
                 {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
             </select>
-            <select className = "box-style" onChange={finishNode}>
+            <select className="box-style" onChange={finishNode}>
                 <option selected disabled>도착지 선택</option>
                 {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
             </select>
@@ -188,4 +181,4 @@ function KakaoMap() {
     
 }
 
-export default KakaoMap;
+export default ConvenientPage;

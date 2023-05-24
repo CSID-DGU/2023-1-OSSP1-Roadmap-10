@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import MainPage from "../pages/Mainpage.jsx";
-import Map from "../pages/Map.jsx";
-import Convenient from "../pages/Convenient.jsx";
+import MainPage from "../MainPage/Mainpage";
+import Map from "../Map/Map";
+import Convenient from "../convenient/Convenient";
 
 function Router() {
   return (

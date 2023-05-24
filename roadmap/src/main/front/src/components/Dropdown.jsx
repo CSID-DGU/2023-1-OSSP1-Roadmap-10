@@ -1,4 +1,4 @@
-import LocList from "./buildinginfo"
+import LocList from "../data/buildinginfo"
 
 const loc = LocList();
 

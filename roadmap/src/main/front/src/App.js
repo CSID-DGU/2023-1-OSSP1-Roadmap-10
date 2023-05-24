@@ -1,6 +1,6 @@
 import React from "react";
-import Router from "./lib/router.jsx";
-import "./pages/back.css"
+import Router from "./route/router";
+import "./MainPage/back.css"
 
 function App() {
   return (
