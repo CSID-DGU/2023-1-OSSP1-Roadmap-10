@@ -1,43 +1,46 @@
 package com.example.practice.controller;
 
-import com.example.practice.function.LineStorage;
-import com.example.practice.function.Util;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.example.practice.function.AppRunner;
+import com.example.practice.function.DijkstraAlgorithm;
+import com.example.practice.function.GetLatLng;
+import com.example.practice.function.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.IOException;
+import java.util.List;
 
 
 @RestController
 public class MainController {
 
-    private final LineStorage lineStorage;
+    private final AppRunner appRunner;
+    // Create an instance of the DijkstraAlgorithm class
+    DijkstraAlgorithm dijkstraAlgorithm = new DijkstraAlgorithm();
+
 
     @Autowired
-    public MainController(LineStorage lineStorage) {
-        this.lineStorage = lineStorage;
+    public MainController(AppRunner appRunner) {
+        this.appRunner = appRunner;
     }
 
     @GetMapping("map")
-    public void datainsert(@RequestParam Integer id, @RequestParam String title) {
+    public void dataInsert(@RequestParam String id, @RequestParam String title) {
         System.out.println(id);
         System.out.println(title);
+        Node[] nodeArr = appRunner.getNodeArr();
 
-        String line = lineStorage.getLine();
+        // Call the findShortestPath method and specify the start and finish nodes
+        List<String> shortestPath = dijkstraAlgorithm.findShortestPath(nodeArr, id, title);
 
-        Util util = new Util();
+        System.out.println(shortestPath);
+        System.out.println(shortestPath.size());
+        System.out.println(shortestPath.get(4));
+        GetLatLng getLatLng = new GetLatLng();
 
-        try{
-            util.jsonToObject(line);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        System.out.println(getLatLng.getLatLng(nodeArr, shortestPath));
 
     }
+
 
 }
