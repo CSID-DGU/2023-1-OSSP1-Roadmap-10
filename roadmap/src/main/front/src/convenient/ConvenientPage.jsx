@@ -4,7 +4,6 @@ import LocList from "../data/buildinginfo";
 import drawLine from "../components/Line";
 import moveCenter from "../components/moveCenter";
 import { hideMarker, showMarker } from "../components/Marker";
-import "./map.css"
 import selectBuilding from "../components/Dropdown"
 
 
@@ -160,22 +159,25 @@ function ConvenientPage() {
 
 
     return (
-        <div>
-            <select className="box-style" onChange={startNode}>
-                <option selected disabled>출발지 선택</option>
-                {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
-            </select>
-            <select className="box-style" onChange={finishNode}>
-                <option selected disabled>도착지 선택</option>
-                {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
-            </select>
-            <button className="button-style" onClick={makeLine}>경로 탐색</button>
-            <button className="button-style" onClick={changeStateMarker}>{buttonText}</button>
-            <button className="button-style" onClick={center}>중심으로 이동</button>
+        <div className="map-wrapper">
+            <div className="controller-wrapper">
+                <select className="box-style" onChange={startNode}>
+                    <option selected disabled>출발지 선택</option>
+                    {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
+                </select>
+                <select className="box-style" onChange={finishNode}>
+                    <option selected disabled>도착지 선택</option>
+                    {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
+                </select>
+                <button className="button-style" onClick={makeLine}>경로 탐색</button>
+                <button className="button-style" onClick={changeStateMarker}>{buttonText}</button>
+                <button className="button-style" onClick={center}>중심으로 이동</button>
+            </div>
+
             <span>
                 <div id="map" className="map-style"></div>
-                <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
             </span>
+            <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
         </div>
     )
     

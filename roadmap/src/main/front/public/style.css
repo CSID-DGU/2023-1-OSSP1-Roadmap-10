@@ -1,0 +1,224 @@
+@font-face {
+    font-family: 'neon';
+    src: url("https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css") format('truetype');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'neon';
+}
+
+body {
+    height: 100vh;
+    background-color: black;
+    background-image: url("1920px-DONGGUK_UNIVERSITY_ED8C94ECA095EB8F84.png");
+    background-size: cover;
+    background-position: center;
+}
+
+li {
+    list-style: none;
+}
+img{
+    width: 20vw;
+    height: 20vw;
+}
+a {
+    font-family: 'neon';
+    text-decoration: none;
+    color: rgb(131,120,111);
+    font-size: 1rem;
+}
+
+a:hover {
+    color: coral;
+}
+
+p{
+    font-family: 'neon';
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+/* Header */
+header {
+    position: relative;
+    padding: 0 2rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo p {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+}
+.navbar .toggle_btn {
+    color: aliceblue;
+    padding: 0.4em;
+    font-size: 2.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.title {
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+section#hero {
+    font-family: 'neon';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    height: calc(100vh -60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+#hero h1 {
+    font-family: 'neon';
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.map-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: calc(100vh -60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.map-style {
+    align-content: center;
+    background-color: black;
+    width: 75vw;
+    height: 35vw;
+}
+
+.box-style {
+    font-family: 'neon';
+    margin : 1vh;
+    background-color: rgb(137, 124, 117);
+    color:#fff;
+    padding : 1rem 2rem;
+    border: none;
+    outline:none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.controller-wrapper{
+
+}
+.button-style {
+    margin : 1vh;
+    background-color: rgb(137, 124, 117);
+    color:#fff;
+    border: none;
+    padding : 1rem 2rem;
+    outline:none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 반응형 디자인 */
+@media(max-width: 992px) {
+
+    .navbar .links,
+    .title {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+    .dropdown_menu {
+        display: block;
+    }
+    .box-style{
+        padding: 1em 2em;
+        font-size: .6em;
+    }
+    .button-style{
+        padding: 1em 2em;
+        font-size: .6em;
+    }
+    .map-wrapper{
+        width: 100vw;
+    }
+    .map-style{
+        width:95vw;
+        height: 40vh;
+    }
+    img{
+        width: 40vw;
+        height: 40vw;
+    }
+    header{
+        padding: 0;
+    }
+}
+
+/*모바일 메뉴*/
+.dropdown_menu {
+    z-index: 999;
+    position: absolute;
+    right: 1.3rem;
+    top: 60px;
+    height: 0;
+    width: 160px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu li {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdown_menu li a{
+    font-size:.7em;
+}
+
+.dropdown_menu.open {
+    height: 100px;
+}
+
+

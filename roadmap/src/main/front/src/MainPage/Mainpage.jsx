@@ -4,9 +4,6 @@ function Main() {
   return (
     <div>
         <NavBar></NavBar>
-        <h>
-            Hello! This is New Roadmap MainPage!
-        </h>
     </div>
   );
 }

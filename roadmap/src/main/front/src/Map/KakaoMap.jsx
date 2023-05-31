@@ -1,11 +1,11 @@
 /*global kakao*/
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios"
 import LocList from "../data/buildinginfo";
 import drawLine from "../components/Line";
 import moveCenter from "../components/moveCenter";
 import { hideMarker, showMarker } from "../components/Marker";
-import "./map.css"
+
 import selectBuilding from "../components/Dropdown"
 
 
@@ -15,24 +15,24 @@ const loc = LocList();
 function KakaoMap() {
 
     const [map, settingMap] = useState(null);
-    const [render1,setRender1] = useState(true);
+    const [render1, setRender1] = useState(true);
     const [markers, setMarkers] = useState([])
     const [iW, addIW] = useState([])
-    const [path,setPath] = useState(null)
-    const [stateMarker,setStateMarker] = useState(true)
+    const [path, setPath] = useState(null)
+    const [stateMarker, setStateMarker] = useState(true)
     const [buttonText, setButtonText] = useState("감추기")
-    const changeStateMarker = () =>{
-        if(stateMarker){
+    const changeStateMarker = () => {
+        if (stateMarker) {
             setStateMarker(false)
             setButtonText("띄우기")
-        }else{
+        } else {
             setStateMarker(true)
             setButtonText("감추기")
         }
     }
     const [selectStart, setSelectStart] = useState(null)
     const [selectFinish, setSelectFinish] = useState(null)
-    const [bothNode, setNode] = useState([null,null])//출발점과 도착점
+    const [bothNode, setNode] = useState([null, null])//출발점과 도착점
     const addNewMarker = (newMarker) => {
         setMarkers((prevMarker) => [...prevMarker, newMarker])
     }
@@ -44,17 +44,17 @@ function KakaoMap() {
     }
     const addStartNode = (newNode) => {
         setSelectStart(newNode)
-        setNode([newNode,bothNode[1]])
+        setNode([newNode, bothNode[1]])
     }
     const addFinishNode = (newNode) => {
         setSelectFinish(newNode)
-        setNode([bothNode[0],newNode])
+        setNode([bothNode[0], newNode])
     }
     useEffect(() => {
         const markerArray = []
         const iWArray = []
 
-        
+
         const script = document.createElement("script");
         script.async = true;
         script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=4df16387a395762838f3f668c6731805&autoload=false';
@@ -62,7 +62,7 @@ function KakaoMap() {
 
         script.onload = () => {
             window.kakao.maps.load(() => {
-                if(render1){
+                if (render1) {
                     const container = document.getElementById('map');
                     const options = {
                         center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
@@ -103,9 +103,17 @@ function KakaoMap() {
                         iWArray.push(newInfoWindow)
                     })
 
+                    var mapTypeControl = new window.kakao.maps.MapTypeControl();
+
+                    newMap.addControl(mapTypeControl, window.kakao.maps.ControlPosition.TOPRIGHT);
+
+                    var zoomControl = new window.kakao.maps.ZoomControl();
+                    newMap.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
+
+
 
                     setRender1(false)
-                    
+
                 }
             })
         };
@@ -118,16 +126,16 @@ function KakaoMap() {
     }, []);
     const deleteLine = () => {
         if (map) {
-            if(path){
+            if (path) {
                 path.setMap(null)
             }
             setPath()
         }
     }
-    const startNode = (e) =>{
+    const startNode = (e) => {
         addStartNode(e.target.value)
     }
-    const finishNode = (e) =>{
+    const finishNode = (e) => {
         addFinishNode(e.target.value)
     }
     const makeLine = () => {
@@ -146,46 +154,47 @@ function KakaoMap() {
         }
     }
     useEffect(() => {
-        if(map && markers){
-            try{
-                if(stateMarker){
+        if (map && markers) {
+            try {
+                if (stateMarker) {
                     cngMarker(showMarker(map, markers))
                     path.setMap(map)
-                }else{
+                } else {
                     cngMarker(hideMarker(map, markers, iW))
                     path.setMap(null)
                 }
-            }catch{
+            } catch {
                 console.log("error?")
             }
         }
 
-    },[stateMarker])
-    const check = () =>{
+    }, [stateMarker])
+    const check = () => {
         console.log(bothNode)
         console.log(path)
     }
 
     return (
-        <div>
-            <select className = "box-style" onChange={startNode}>
-                <option selected disabled>출발지 선택</option>
-                {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
-            </select>
-            <select className = "box-style" onChange={finishNode}>
-                <option selected disabled>도착지 선택</option>
-                {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
-            </select>
-            <button className="button-style" onClick={makeLine}>경로 탐색</button>
-            <button className="button-style" onClick={changeStateMarker}>{buttonText}</button>
-            <button className="button-style" onClick={center}>중심으로 이동</button>
+        <div className="map-wrapper">
+            <div className="controller-wrapper">
+                <select className="box-style" onChange={startNode}>
+                    <option selected disabled>출발지 선택</option>
+                    {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
+                </select>
+                <select className="box-style" onChange={finishNode}>
+                    <option selected disabled>도착지 선택</option>
+                    {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
+                </select>
+                <button className="button-style" onClick={makeLine}>경로 탐색</button>
+            </div>
+
             <span>
                 <div id="map" className="map-style"></div>
-                <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
             </span>
+            <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
         </div>
     )
-    
+
 }
 
 export default KakaoMap;

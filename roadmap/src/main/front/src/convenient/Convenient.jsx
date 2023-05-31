@@ -6,9 +6,6 @@ function Convenient() {
   return (
     <div>
     <NavBar/>
-    <h>
-        Hello! This is New Roadmap ConvenientPage!
-    </h>
     <ConvenientPage></ConvenientPage>
     </div>
   );

@@ -6,10 +6,7 @@ function Map(){
 
     return(
         <div>
-            <NavBar />
-            <h>
-                Hello! This is New Roadmap MapPage!
-            </h>
+            <NavBar/>
             <KakaoMap></KakaoMap>
         </div>
     )
