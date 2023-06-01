@@ -3,8 +3,16 @@ import {useState} from "react";
 import axios from "axios";
 
 function Main() {
-    const [id, Setid] = useState();
-    const [title, SetTitle] = useState();
+    const selectList = ["L", "H", "A", "J"]
+    const [id, SetId] = useState("");
+    const [title, SetTitle] = useState("");
+
+    const handleSelect1 = (e) => {
+        SetId(e.target.value)
+    }
+    const handleSelect2 = (e) => {
+        SetTitle(e.target.value)
+    }
 
     return (
         <div>
@@ -12,12 +20,22 @@ function Main() {
             <h>
                 Hello! This is New Roadmap MainPage!
             </h>
-            <input onChange={(e)=>{
-                Setid(e.target.value);
-            }}/>
-            <input onChange={(e)=>{
-                SetTitle(e.target.value);
-            }}/>
+            <select onChange={handleSelect1} value={id}>
+                <option value="">Select Start</option>
+                {selectList.map((item) => (
+                    <option value={item} key={item}>
+                        {item}
+                    </option>
+                ))}
+            </select>
+            <select onChange={handleSelect2} value={title}>
+                <option value="">Select End</option>
+                {selectList.map((item) => (
+                    <option value={item} key={item}>
+                        {item}
+                    </option>
+                ))}
+            </select>
             <button
                 onClick={
                     ()=>{
