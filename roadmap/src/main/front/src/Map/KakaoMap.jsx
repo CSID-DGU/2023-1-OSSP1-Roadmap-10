@@ -129,7 +129,7 @@ function KakaoMap() {
             if (path) {
                 path.setMap(null)
             }
-            setPath()
+            setPath(0)
         }
     }
     const startNode = (e) => {
@@ -148,6 +148,29 @@ function KakaoMap() {
             }
         }
     }
+
+    function drawPath(nestedList) {
+        if(map){
+            deleteLine()
+            try {
+                for (let i = 0; i < nestedList.length - 1; i++) {
+                    const startLatLng = new window.kakao.maps.LatLng(
+                        parseFloat(nestedList[i][0]),
+                        parseFloat(nestedList[i][1])
+                    );
+                    const finishLatLng = new window.kakao.maps.LatLng(
+                        parseFloat(nestedList[i + 1][0]),
+                        parseFloat(nestedList[i + 1][1])
+                    );
+                    setPath(drawLine(map, startLatLng, finishLatLng));
+                }
+            } catch {
+                console.log("drawPath's error")
+            }
+        }
+
+    }
+
     const center = () => {
         if (map) {
             moveCenter(map)
@@ -204,6 +227,7 @@ function KakaoMap() {
                                 const nestedList = response.data; // Assuming the response contains the List<List<Double>> structure
                                 console.log(nestedList);
                                 // Handle the nestedList data here
+                                drawPath(nestedList);
                             })
                             .catch(error => {
                                 console.log("Error:", error);
