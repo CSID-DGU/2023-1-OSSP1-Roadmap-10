@@ -1,7 +1,7 @@
 /*global kakao*/
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios"
-import LocList from "../data/buildinginfo";
+import LocList from "../components/buildinginfo";
 import drawLine from "../components/Line";
 import moveCenter from "../components/moveCenter";
 import { hideMarker, showMarker } from "../components/Marker";
@@ -174,18 +174,36 @@ function KakaoMap() {
         console.log(path)
     }
 
+    const [start, SetStart] = useState();
+    const [finish, SetFinish] = useState();
+
     return (
         <div className="map-wrapper">
             <div className="controller-wrapper">
-                <select className="box-style" onChange={startNode}>
+                <select className="box-style" onChange={(e)=>{
+                    SetStart(e.target.value);
+                }}>
                     <option selected disabled>출발지 선택</option>
-                    {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
+                    {loc.map((building) => <option key={building.code} value={building.code}>{building.id}</option>)}
                 </select>
-                <select className="box-style" onChange={finishNode}>
+                <select className="box-style" onChange={(e) =>{
+                    SetFinish(e.target.value);
+                }}>
                     <option selected disabled>도착지 선택</option>
-                    {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
+                    {loc.map((building) => <option key={building.code} value={building.code}>{building.id}</option>)}
                 </select>
-                <button className="button-style" onClick={makeLine}>경로 탐색</button>
+                <button className="button-style" onClick={
+                    ()=>{
+                        axios.get('/map',{
+                            params:{
+                                start : start,
+                                finish : finish
+                            }
+                        }).catch(function(){
+                            console.log('실패함')
+                        })
+                    }}
+                >경로 탐색</button>
             </div>
 
             <span>

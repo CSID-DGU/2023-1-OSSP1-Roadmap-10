@@ -1,6 +1,6 @@
 /*global kakao*/
 import React, { useEffect, useState,useRef } from "react";
-import LocList from "../data/buildinginfo";
+import LocList from "../components/buildinginfo";
 import drawLine from "../components/Line";
 import moveCenter from "../components/moveCenter";
 import { hideMarker, showMarker } from "../components/Marker";
