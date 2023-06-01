@@ -26,21 +26,22 @@ public class MainController {
     }
 
     @GetMapping("map")
-    public void dataInsert(@RequestParam String start, @RequestParam String finish) {
-        System.out.println(start);
-        System.out.println(finish);
+    public List<List<Double>> dataInsert(@RequestParam String start, @RequestParam String finish) {
+        System.out.println("Start: " + start);
+        System.out.println("Finish: " + finish);
         Node[] nodeArr = appRunner.getNodeArr();
 
         // Call the findShortestPath method and specify the start and finish nodes
         List<String> shortestPath = dijkstraAlgorithm.findShortestPath(nodeArr, start, finish);
 
-        System.out.println(shortestPath);
-        System.out.println(shortestPath.size());
-        System.out.println(shortestPath.get(4));
         GetLatLng getLatLng = new GetLatLng();
 
-        System.out.println(getLatLng.getLatLng(nodeArr, shortestPath));
+        List<List<Double>> dLatLng = getLatLng.getLatLng(nodeArr, shortestPath);
 
+        System.out.println("Shortest Path: " + shortestPath);
+        System.out.println("dLatLng: " + dLatLng);
+
+        return dLatLng;
     }
 
 

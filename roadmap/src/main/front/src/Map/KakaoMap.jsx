@@ -194,15 +194,23 @@ function KakaoMap() {
                 </select>
                 <button className="button-style" onClick={
                     ()=>{
-                        axios.get('/map',{
-                            params:{
-                                start : start,
-                                finish : finish
+                        axios.get('/map', {
+                            params: {
+                                start: start,
+                                finish: finish
                             }
-                        }).catch(function(){
-                            console.log('실패함')
                         })
-                    }}
+                            .then(response => {
+                                const nestedList = response.data; // Assuming the response contains the List<List<Double>> structure
+                                console.log(nestedList);
+                                // Handle the nestedList data here
+                            })
+                            .catch(error => {
+                                console.log("Error:", error);
+                            });
+                    }
+                    
+                }
                 >경로 탐색</button>
             </div>
 
