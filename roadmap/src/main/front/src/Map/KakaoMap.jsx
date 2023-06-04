@@ -6,7 +6,6 @@ import drawLine from "../components/Line";
 import moveCenter from "../components/moveCenter";
 import { hideMarker, showMarker } from "../components/Marker";
 
-import selectBuilding from "../components/Dropdown"
 
 
 const { kakao } = window;
@@ -81,26 +80,11 @@ function KakaoMap() {
 
 
                         newMarker.setMap(newMap);
+                        newMarker.setMap(null);
 
-                        const contents = document.createElement('div');
-
-                        const text = document.createElement('text')
-                        contents.textContent = (building.explain)
-                        text.appendChild(contents)
-
-                        const newInfoWindow = new window.kakao.maps.InfoWindow({
-                            content: text,
-                            removable: true
-                        })
-
-                        window.kakao.maps.event.addListener(newMarker, 'click', function () {
-                            newInfoWindow.open(newMap, newMarker)
-                        })
 
                         addNewMarker(newMarker);
-                        addNewIW(newInfoWindow);
                         markerArray.push(newMarker)
-                        iWArray.push(newInfoWindow)
                     })
 
                     var mapTypeControl = new window.kakao.maps.MapTypeControl();
