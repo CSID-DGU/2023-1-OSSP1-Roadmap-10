@@ -11,21 +11,37 @@ import { hideMarker, showMarker } from "../components/Marker";
 const { kakao } = window;
 const loc = LocList();
 
+
+
 function BuildingInfoPage() {
 
     const [map, settingMap] = useState(null);
     const [render1, setRender1] = useState(true);
     const [markers, setMarkers] = useState([])
+    const [test, Test] = useState(true)
     const [iW, addIW] = useState([])
-    const [path, setPath] = useState(null)
-    const [selectStart, setSelectStart] = useState(null)
-    const [selectFinish, setSelectFinish] = useState(null)
+
+
     const addNewMarker = (newMarker) => {
         setMarkers((prevMarker) => [...prevMarker, newMarker])
     }
     const addNewIW = (newInfoWindow) => {
         addIW((previW) => [...previW, newInfoWindow])
     }
+
+    function settest() {
+        if (map) {
+            if (test) {
+                Test(false)
+            }
+            else {
+                Test(true)
+            }
+            console.log("실험.." + test)
+        }
+
+    }
+
     useEffect(() => {
 
 
@@ -68,77 +84,87 @@ function BuildingInfoPage() {
         };
     }, []);
 
-    useEffect(()=>{
-        if(map){
+
+    useEffect(() => {
+        if (map) {
             const markerArray = []
             const iWArray = []
-    
-    
+
+
+
             loc.map((building) => {
                 const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
                 const newMarker = new window.kakao.maps.Marker({
                     position: markerPosition
                 });
-    
-    
+
+
                 newMarker.setMap(map);
-    
+
+                addNewMarker(newMarker);
+                markerArray.push(newMarker)
+
                 const newInfoWindow = new window.kakao.maps.CustomOverlay({
-                    clickable:true,
+                    clickable: true,
                     map: map,
                     position: newMarker.getPosition(),
                     removable: true,
                 })
-    
+
                 const contents =
                     `<div class="overlay-wrapper">
-                        <div class="overlay-bar"><h>${building.id}</h><div class = "xmark"><i class="fa-solid fa-xmark" onClick = {${closeOverlay()}}></i></div></div>
-                        <body>
-                            <div class="overlay-img-wrapper"><img src ="ROADMAP_4.png"></img></div>
+                        <div class="overlay-bar"><h>${building.id}</h><div class = "xmark"><i class="fa-solid fa-xmark"}></i></div></div>
+                        <body class = "overlay-content-wrapper">
+                            <div class= "overlay-img-wrapper"><i class="fa-solid fa-xmark"></i></img></div>
                             <div class="overlay-text-wrapper">
                                 <p>편의시설: ${building.facilities}</p>
                                 <p>학사운영실 위치/전화번호:</p>
+                                <button id = 'closeButton'>HOME</button>
                             </div>
                         </body>
-                        <script>
-                        </script>
                     </div>`;
-    
-                newInfoWindow.setMap(null)
 
-                function closeOverlay(){
-                    newInfoWindow.setMap(null)
-                }
                 newInfoWindow.setContent(contents)
-    
-                window.kakao.maps.event.addListener(newMarker, 'click', function () {
+
+
+                function closeOverlay() {
                     if (map) {
                         if (newInfoWindow.getMap() === null) {
-                            newInfoWindow.setMap(map)
+                            newInfoWindow.setMap(map, newMarker)
                         }
                         else {
                             newInfoWindow.setMap(null)
                         }
                     }
-                })
-    
-    
-                addNewMarker(newMarker);
+                }
+
+                newInfoWindow.setMap(map)
+
+
+
+
+                window.kakao.maps.event.addListener(newMarker, 'click', closeOverlay)
+
                 addNewIW(newInfoWindow);
-                markerArray.push(newMarker)
                 iWArray.push(newInfoWindow)
             })
         }
-    },[map]);
+    }, [map]);
 
-    const deleteLine = () => {
+    let i = 0;
+
+    useEffect(() => {
         if (map) {
-            if (path) {
-                path.setMap(null)
-            }
-            setPath(0)
+            iW.map(info => {
+                info.setMap(null)
+                
+                console.log(i);
+                
+                i++;
+            })
         }
-    }
+    }, [iW])
+
 
 
 
@@ -147,7 +173,6 @@ function BuildingInfoPage() {
             <span>
                 <div id="map" className="map-style"></div>
             </span>
-            <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
         </div>
     )
 
