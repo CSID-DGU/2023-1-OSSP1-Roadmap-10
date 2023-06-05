@@ -109,8 +109,8 @@ section#hero {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    height: calc(100vh - 60px);
+    transform: translate(-50%, -45%);
+    height: calc(100vh -60px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -121,8 +121,8 @@ section#hero {
 .map-style {
     align-content: center;
     background-color: black;
-    width: 85vw;
-    height: 40vw;
+    width: 80vw;
+    height: 35vw;
 }
 
 .box-style {
@@ -264,17 +264,23 @@ section#hero {
     margin: 5px;
     font-size: 1.2rem;
 }
+.overlay-wrapper .overlay-content-wrapper{
+    align-items: center;
+}
 .overlay-wrapper .overlay-img-wrapper{
     position:absolute;
     transform: translate(0,30%);
     top:10px;
     left: 5px;
-    width: 73px;
-    height: 71px;
+    width: 140px;
+    height: 79px;
     border:1px;
-    overflow: hidden;
+    float: left;
 }
+
 .overlay-wrapper .overlay-text-wrapper{
+    width: 144px;
+    height: 80px;
     position: relative;
-    height: 75px;
+    float : right;
 }
