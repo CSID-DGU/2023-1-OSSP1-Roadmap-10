@@ -6,7 +6,7 @@ const drawLine = (map, startLatLng, finishLatLng) => {
     const path = [startLatLng, finishLatLng];
 
     const newPath = new window.kakao.maps.Polyline({
-        path: path,
+        path: [startLatLng, finishLatLng],
         strokeWeight: 5,
         strokeColor: "#FFAE00",
         strokeOpacity: 1,

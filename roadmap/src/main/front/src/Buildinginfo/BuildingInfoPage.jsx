@@ -140,27 +140,7 @@ function BuildingInfoPage() {
         }
     }
 
-    function drawPath(nestedList) {
-        if (map) {
-            deleteLine()
-            try {
-                for (let i = 0; i < nestedList.length - 1; i++) {
-                    const startLatLng = new window.kakao.maps.LatLng(
-                        parseFloat(nestedList[i][0]),
-                        parseFloat(nestedList[i][1])
-                    );
-                    const finishLatLng = new window.kakao.maps.LatLng(
-                        parseFloat(nestedList[i + 1][0]),
-                        parseFloat(nestedList[i + 1][1])
-                    );
-                    setPath(drawLine(map, startLatLng, finishLatLng));
-                }
-            } catch {
-                console.log("drawPath's error")
-            }
-        }
 
-    }
 
     return (
         <div className="map-wrapper">
