@@ -19,6 +19,9 @@ function ConvenientPage() {
     const [path,setPath] = useState(null)
     const [stateMarker,setStateMarker] = useState(true)
     const [buttonText, setButtonText] = useState("감추기")
+    const [convNum, setSelectedValue] = useState('')
+
+
     const changeStateMarker = () =>{
         if(stateMarker){
             setStateMarker(false)
@@ -124,44 +127,54 @@ function ConvenientPage() {
             moveCenter(map)
         }
     }
+
     useEffect(() => {
-        if(map && markers){
-            try{
-                if(stateMarker){
-                    cngMarker(showMarker(map, markers))
-                    path.setMap(map)
-                }else{
-                    cngMarker(hideMarker(map, markers, iW))
-                    path.setMap(null)
+        if (map && markers) {
+            try {
+                if (stateMarker) {
+                    cngMarker(showMarker(map, markers));
+                    path.setMap(map);
+                } else {
+                    cngMarker(hideMarker(map, markers, iW));
+                    path.setMap(null);
                 }
-            }catch{
-                console.log("error")
+            } catch {
+                console.log("error");
             }
         }
 
-    },[stateMarker])
+        // Clear the previous markers
+        markers.forEach(marker => marker.setMap(null));
 
-    const [convNum, setSelectedValue] = useState('');
+        if (map && convNum !== '') {
+            const markerArray = [];
+
+            loc.forEach(building => {
+                if (building.facilities[convNum] === 1) {
+                    const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
+                    const newMarker = new window.kakao.maps.Marker({
+                        position: markerPosition
+                    });
+                    newMarker.setMap(map);
+                    markerArray.push(newMarker);
+                }
+            });
+
+            setMarkers(markerArray);
+        }
+    }, [stateMarker, convNum]);
+
+
+
+
 
     const findConv = (e) =>{
         setSelectedValue(e.target.value);
     }
 
-    useEffect(()=>{
-        console.log(convNum);
-        loc.map((building)=> {
-            if (building.facilities[convNum] === 1) {
-                console.log(building.id);
-                const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
-                const newMarker = new window.kakao.maps.Marker({
-                    position: markerPosition
-                });
-                newMarker.setMap(map);
-            }else{
-            }
+    const markerArray = [];
 
-        });
-    }, [convNum]);
+
 
     return (
         <div className="map-wrapper">
