@@ -6,7 +6,8 @@ const LocList = () =>{
             "Lat": 37.55789721,
             "Lng": 127.0033455,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "R49C",
@@ -14,7 +15,8 @@ const LocList = () =>{
             "Lat": 37.558199,
             "Lng": 126.999369,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "MK",
@@ -30,7 +32,8 @@ const LocList = () =>{
             "Lat": 37.560443,
             "Lng": 126.999175,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "X",
@@ -38,7 +41,8 @@ const LocList = () =>{
             "Lat": 37.560092080451604,
             "Lng": 126.99890894109868,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "W",
@@ -46,7 +50,8 @@ const LocList = () =>{
             "Lat": 37.557309806246856,
             "Lng": 126.99988682382434,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "R18C",
@@ -54,7 +59,8 @@ const LocList = () =>{
             "Lat": 37.55698903,
             "Lng": 127.0023178,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "F",
@@ -62,7 +68,8 @@ const LocList = () =>{
             "Lat": 37.55870454949439,
             "Lng": 127.0003621705126,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "G2",
@@ -70,7 +77,8 @@ const LocList = () =>{
             "Lat": 37.55650971868976,
             "Lng": 127.00066999579639,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D7",
@@ -78,7 +86,8 @@ const LocList = () =>{
             "Lat": 37.55889546,
             "Lng": 127.0049844,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D5",
@@ -86,7 +95,8 @@ const LocList = () =>{
             "Lat": 37.559890259237434,
             "Lng": 127.00083300537905,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "BM",
@@ -94,7 +104,8 @@ const LocList = () =>{
             "Lat": 37.55761614,
             "Lng": 127.0008737,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "A",
@@ -102,7 +113,8 @@ const LocList = () =>{
             "Lat": 37.55769182916527,
             "Lng": 126.99996831050905,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "K",
@@ -110,7 +122,8 @@ const LocList = () =>{
             "Lat": 37.55758006,
             "Lng": 127.0031101,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "BB",
@@ -118,7 +131,8 @@ const LocList = () =>{
             "Lat": 37.558066640598234,
             "Lng": 127.00090089146994,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "N",
@@ -126,7 +140,8 @@ const LocList = () =>{
             "Lat":  37.55852434954834,
             "Lng": 126.99949748962393,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "R76C",
@@ -134,7 +149,8 @@ const LocList = () =>{
             "Lat": 37.55893880876175,
             "Lng": 126.99964235549915,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "M",
@@ -142,7 +158,8 @@ const LocList = () =>{
             "Lat": 37.55757647341498,
             "Lng": 127.00257589893737,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "FF",
@@ -150,7 +167,8 @@ const LocList = () =>{
             "Lat": 37.556999862466405,
             "Lng": 126.99958351339863,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "I",
@@ -158,7 +176,8 @@ const LocList = () =>{
             "Lat": 37.55807384209792,
             "Lng": 126.99846984248175,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D1",
@@ -166,7 +185,8 @@ const LocList = () =>{
             "Lat": 37.558331,
             "Lng": 126.99766,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "E",
@@ -174,7 +194,8 @@ const LocList = () =>{
             "Lat": 37.558906368112204,
             "Lng": 126.99888179552639,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D8",
@@ -182,7 +203,8 @@ const LocList = () =>{
             "Lat": 37.55834045511467,
             "Lng": 127.0046629226596,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D9",
@@ -190,7 +212,8 @@ const LocList = () =>{
             "Lat": 37.55738544,
             "Lng": 127.0034994,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "Y",
@@ -198,7 +221,8 @@ const LocList = () =>{
             "Lat": 37.5574611679436,
             "Lng": 127.00118156166387,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D0",
@@ -206,7 +230,8 @@ const LocList = () =>{
             "Lat": 37.55660338,
             "Lng": 127.0032232,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D2",
@@ -214,7 +239,8 @@ const LocList = () =>{
             "Lat": 37.559552,
             "Lng": 126.998305,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D3",
@@ -222,7 +248,8 @@ const LocList = () =>{
             "Lat": 37.559841,
             "Lng": 126.99805,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "P",
@@ -230,7 +257,8 @@ const LocList = () =>{
             "Lat": 37.55962355851048,
             "Lng": 126.99857846327879,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "Q",
@@ -238,7 +266,8 @@ const LocList = () =>{
             "Lat": 37.55987223060984,
             "Lng": 126.9983430440475,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "S",
@@ -246,7 +275,8 @@ const LocList = () =>{
             "Lat": 37.55602677,
             "Lng": 127.0018244,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "C",
@@ -254,7 +284,8 @@ const LocList = () =>{
             "Lat": 37.55797294,
             "Lng": 126.9990538,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "G",
@@ -262,7 +293,8 @@ const LocList = () =>{
             "Lat": 37.559828994079886,
             "Lng": 127.00026710476699,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "OO",
@@ -270,7 +302,8 @@ const LocList = () =>{
             "Lat": 37.558257,
             "Lng": 127.000181,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "J",
@@ -278,7 +311,8 @@ const LocList = () =>{
             "Lat": 37.56027949267652,
             "Lng": 126.99979627479863,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "Z",
@@ -286,7 +320,8 @@ const LocList = () =>{
             "Lat": 37.560110094245076,
             "Lng": 126.99837472929515,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "L",
@@ -294,7 +329,8 @@ const LocList = () =>{
             "Lat": 37.55804496593563,
             "Lng": 127.00357640228633,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "H",
@@ -302,7 +338,8 @@ const LocList = () =>{
             "Lat": 37.55761974,
             "Lng": 127.0017837,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "R19C",
@@ -310,7 +347,8 @@ const LocList = () =>{
             "Lat": 37.55723411,
             "Lng": 127.0016976,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D6",
@@ -318,7 +356,8 @@ const LocList = () =>{
             "Lat": 37.55876577,
             "Lng": 127.0034814,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "T",
@@ -326,7 +365,8 @@ const LocList = () =>{
             "Lat": 37.55743233202582,
             "Lng": 127.00153014440032,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         },
         {
             "code": "D4",
@@ -334,7 +374,8 @@ const LocList = () =>{
             "Lat": 37.560692,
             "Lng": 126.999335,
             "facilities": "",
-            "explain": ""
+            "explain": "",
+            "image": ""
         }
     ];
 
