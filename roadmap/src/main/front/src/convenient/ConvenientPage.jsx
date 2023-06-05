@@ -4,6 +4,7 @@ import LocList from "../components/buildinginfo";
 import drawLine from "../components/Line";
 import moveCenter from "../components/moveCenter";
 import { hideMarker, showMarker } from "../components/Marker";
+import axios from "axios";
 
 
 const { kakao } = window;
@@ -51,7 +52,7 @@ function ConvenientPage() {
         const markerArray = []
         const iWArray = []
 
-        
+
         const script = document.createElement("script");
         script.async = true;
         script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=4df16387a395762838f3f668c6731805&autoload=false';
@@ -77,30 +78,14 @@ function ConvenientPage() {
 
 
                         newMarker.setMap(newMap);
-
-                        const contents = document.createElement('div');
-
-                        const text = document.createElement('text')
-                        contents.textContent = (building.explain)
-                        text.appendChild(contents)
-
-                        const newInfoWindow = new window.kakao.maps.InfoWindow({
-                            content: text,
-                            removable: true
-                        })
-
-                        window.kakao.maps.event.addListener(newMarker, 'click', function () {
-                            newInfoWindow.open(newMap, newMarker)
-                        })
+                        newMarker.setMap(null);
 
                         addNewMarker(newMarker);
-                        addNewIW(newInfoWindow);
                         markerArray.push(newMarker)
-                        iWArray.push(newInfoWindow)
                     })
 
                     setRender1(false)
-                    
+
                 }
             })
         };
@@ -156,16 +141,52 @@ function ConvenientPage() {
 
     },[stateMarker])
 
+    const [convNum, setSelectedValue] = useState('');
+
+    const findConv = (e) =>{
+        setSelectedValue(e.target.value);
+    }
+
+    useEffect(()=>{
+        console.log(convNum);
+        loc.map((building)=> {
+            if (building.facilities[convNum] === 1) {
+                console.log(building.id);
+                const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
+                const newMarker = new window.kakao.maps.Marker({
+                    position: markerPosition
+                });
+                newMarker.setMap(map);
+            }else{
+            }
+
+        });
+    }, [convNum]);
 
     return (
         <div className="map-wrapper">
+            <div className="controller-wrapper">
+                <select className="box-style" onChange={findConv}>
+                    <option selected disabled>편의시설 선택</option>
+                    <option value="0">카페</option>
+                    <option value="1">식당</option>
+                    <option value="2">편의점</option>
+                    <option value="3">ATM</option>
+                    <option value="4">열람실</option>
+                    <option value="5">제세동기</option>
+                    <option value="6">복사기</option>
+                    <option value="7">유인복사실</option>
+                    <option value="8">증명서자동발급기</option>
+                </select>
+            </div>
+
             <span>
                 <div id="map" className="map-style"></div>
             </span>
             <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
         </div>
     )
-    
+
 }
 
 export default ConvenientPage;
