@@ -21,8 +21,9 @@ li {
     list-style: none;
 }
 img{
+    transform: translate(0,10%);
     width: 20vw;
-    height: 20vw;
+    height: 6vw;
 }
 a {
     font-family: 'neon';
@@ -120,8 +121,8 @@ section#hero {
 .map-style {
     align-content: center;
     background-color: black;
-    width: 75vw;
-    height: 35vw;
+    width: 85vw;
+    height: 40vw;
 }
 
 .box-style {
@@ -184,8 +185,8 @@ section#hero {
         height: 40vh;
     }
     img{
-        width: 40vw;
-        height: 40vw;
+        width: 50vw;
+        height: 15vw;
     }
     header{
         padding: 0;
@@ -220,5 +221,60 @@ section#hero {
 .dropdown_menu.open {
     height: 100px;
 }
+/*오버레이 스타일*/
+.overlay-wrapper{
+    position: absolute;
+    left: 0;
+    bottom: 40px;
+    width: 288px;
+    height: 132px;
+    margin-left: -144px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 12px;
+    font-family: 'neon';
+    border-radius: 10px;
+    background-color: #fff;
+}
+.overlay-wrapper p{
+    font-family: 'neon';
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 0.6rem;
+}
+.overlay-wrapper *{
+    padding:0;
+    margin:0;
+}
 
-
+.overlay-wrapper .overlay-bar{
+    display:flex;
+    padding:10px;
+    background-color: cadetblue;
+    align-items: center;
+    justify-content: space-between;
+    height : 2rem;
+}
+.xmark{
+    color:#fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.overlay-wrapper .overlay-bar h{
+    margin: 5px;
+    font-size: 1.2rem;
+}
+.overlay-wrapper .overlay-img-wrapper{
+    position:absolute;
+    transform: translate(0,30%);
+    top:10px;
+    left: 5px;
+    width: 73px;
+    height: 71px;
+    border:1px;
+    overflow: hidden;
+}
+.overlay-wrapper .overlay-text-wrapper{
+    position: relative;
+    height: 75px;
+}
