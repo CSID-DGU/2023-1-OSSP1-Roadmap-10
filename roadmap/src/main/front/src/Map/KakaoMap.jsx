@@ -20,6 +20,7 @@ function KakaoMap() {
     const [path, setPath] = useState(null)
     const [stateMarker, setStateMarker] = useState(true)
     const [buttonText, setButtonText] = useState("감추기")
+
     const changeStateMarker = () => {
         if (stateMarker) {
             setStateMarker(false)
@@ -109,13 +110,13 @@ function KakaoMap() {
         };
     }, []);
     const deleteLine = () => {
-        if (map) {
-            if (path) {
-                path.setMap(null)
-            }
-            setPath(0)
+        if (map && path) {
+            path.forEach((line) => line.setMap(null)); // Remove each line from the map
+            setPath([]); // Reset the path state variable
         }
-    }
+    };
+
+
     const startNode = (e) => {
         addStartNode(e.target.value)
     }
@@ -124,19 +125,22 @@ function KakaoMap() {
     }
     const makeLine = () => {
         if (map) {
-            deleteLine()
+            deleteLine(); // Delete the previously drawn path
             try {
-                setPath(drawLine(map, bothNode))
+                const newPath = drawLine(map, bothNode); // Draw the new path
+                setPath(newPath); // Set the new path in the state variable
             } catch {
-                console.log("drawline's error")
+                console.log("drawLine error");
             }
         }
-    }
+    };
+
 
     function drawPath(nestedList) {
-        if(map){
-            deleteLine()
+        if (map) {
+            deleteLine(); // Delete the previously drawn path
             try {
+                const newPath = [];
                 for (let i = 0; i < nestedList.length - 1; i++) {
                     const startLatLng = new window.kakao.maps.LatLng(
                         parseFloat(nestedList[i][0]),
@@ -146,14 +150,16 @@ function KakaoMap() {
                         parseFloat(nestedList[i + 1][0]),
                         parseFloat(nestedList[i + 1][1])
                     );
-                    setPath(drawLine(map, startLatLng, finishLatLng));
+                    const newLine = drawLine(map, startLatLng, finishLatLng); // Draw each line of the new path
+                    newPath.push(newLine);
                 }
+                setPath(newPath); // Set the new path in the state variable
             } catch {
-                console.log("drawPath's error")
+                console.log("drawPath error");
             }
         }
-
     }
+
 
     const center = () => {
         if (map) {
