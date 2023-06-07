@@ -138,6 +138,9 @@ section#hero {
     font-weight: bold;
     cursor: pointer;
 }
+select option [value = ""][disabled]{
+    display : none;
+}
 .controller-wrapper{
 
 }

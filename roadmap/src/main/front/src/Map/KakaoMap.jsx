@@ -196,13 +196,13 @@ function KakaoMap() {
                 <select className="box-style" onChange={(e)=>{
                     SetStart(e.target.value);
                 }}>
-                    <option selected disabled>출발지 선택</option>
+                    <option value = "" selected disabled>출발지 선택</option>
                     {loc.map((building) => <option key={building.code} value={building.code}>{building.id}</option>)}
                 </select>
                 <select className="box-style" onChange={(e) =>{
                     SetFinish(e.target.value);
                 }}>
-                    <option selected disabled>도착지 선택</option>
+                    <option value = "" selected disabled>도착지 선택</option>
                     {loc.map((building) => <option key={building.code} value={building.code}>{building.id}</option>)}
                 </select>
                 <button className="button-style" onClick={
