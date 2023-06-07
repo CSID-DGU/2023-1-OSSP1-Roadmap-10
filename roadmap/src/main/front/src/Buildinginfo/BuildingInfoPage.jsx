@@ -124,8 +124,6 @@ function BuildingInfoPage() {
                         </body>
                     </div>`;
 
-                newInfoWindow.setContent(contents)
-
 
                 function closeOverlay() {
                     if (map) {
@@ -137,6 +135,11 @@ function BuildingInfoPage() {
                         }
                     }
                 }
+
+                newInfoWindow.setContent(contents)
+
+
+                
 
                 newInfoWindow.setMap(map)
 

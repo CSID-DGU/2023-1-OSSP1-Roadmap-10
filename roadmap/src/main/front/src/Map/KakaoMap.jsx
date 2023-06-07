@@ -21,34 +21,8 @@ function KakaoMap() {
     const [stateMarker, setStateMarker] = useState(true)
     const [buttonText, setButtonText] = useState("감추기")
 
-    const changeStateMarker = () => {
-        if (stateMarker) {
-            setStateMarker(false)
-            setButtonText("띄우기")
-        } else {
-            setStateMarker(true)
-            setButtonText("감추기")
-        }
-    }
-    const [selectStart, setSelectStart] = useState(null)
-    const [selectFinish, setSelectFinish] = useState(null)
-    const [bothNode, setNode] = useState([null, null])//출발점과 도착점
     const addNewMarker = (newMarker) => {
         setMarkers((prevMarker) => [...prevMarker, newMarker])
-    }
-    const cngMarker = (newMarker) => {
-        setMarkers(newMarker)
-    }
-    const addNewIW = (newInfoWindow) => {
-        addIW((previW) => [...previW, newInfoWindow])
-    }
-    const addStartNode = (newNode) => {
-        setSelectStart(newNode)
-        setNode([newNode, bothNode[1]])
-    }
-    const addFinishNode = (newNode) => {
-        setSelectFinish(newNode)
-        setNode([bothNode[0], newNode])
     }
     useEffect(() => {
         const markerArray = []
@@ -109,29 +83,11 @@ function KakaoMap() {
             document.head.removeChild(script);
         };
     }, []);
+    
     const deleteLine = () => {
         if (map && path) {
             path.forEach((line) => line.setMap(null)); // Remove each line from the map
             setPath([]); // Reset the path state variable
-        }
-    };
-
-
-    const startNode = (e) => {
-        addStartNode(e.target.value)
-    }
-    const finishNode = (e) => {
-        addFinishNode(e.target.value)
-    }
-    const makeLine = () => {
-        if (map) {
-            deleteLine(); // Delete the previously drawn path
-            try {
-                const newPath = drawLine(map, bothNode); // Draw the new path
-                setPath(newPath); // Set the new path in the state variable
-            } catch {
-                console.log("drawLine error");
-            }
         }
     };
 
@@ -158,33 +114,6 @@ function KakaoMap() {
                 console.log("drawPath error");
             }
         }
-    }
-
-
-    const center = () => {
-        if (map) {
-            moveCenter(map)
-        }
-    }
-    useEffect(() => {
-        if (map && markers) {
-            try {
-                if (stateMarker) {
-                    cngMarker(showMarker(map, markers))
-                    path.setMap(map)
-                } else {
-                    cngMarker(hideMarker(map, markers, iW))
-                    path.setMap(null)
-                }
-            } catch {
-                console.log("error?")
-            }
-        }
-
-    }, [stateMarker])
-    const check = () => {
-        console.log(bothNode)
-        console.log(path)
     }
 
     const [start, SetStart] = useState();
@@ -231,7 +160,6 @@ function KakaoMap() {
             <span>
                 <div id="map" className="map-style"></div>
             </span>
-            <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
         </div>
     )
 
