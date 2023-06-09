@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MainPage from "../MainPage/Mainpage.jsx";
 import BuildingInfo from "../Buildinginfo/BuildingInfo.jsx";
 import Map from "../Map/Map.jsx";
-import Convenient from "../convenient/Convenient.jsx";
+import Convenient from "../Convenient/Convenient.jsx";
 
 function Router() {
     return (
