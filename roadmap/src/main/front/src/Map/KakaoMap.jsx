@@ -24,6 +24,8 @@ function KakaoMap() {
     const [dLatLng, setDLatLng] = useState([])
     const [selectStart, setSelectStart] = useState(null)
     const [selectFinish, setSelectFinish] = useState(null)
+    const [searchClicked, setSearchClicked] = useState(false)
+
 
 
     const cngMarker = (newMarker) => {
@@ -70,11 +72,15 @@ function KakaoMap() {
             setPath([]);
         }
 
-        if (map && markers && dLatLng && shortestPath) {
-            console.log("dLatLng updated:", dLatLng);
-            console.log("shortestPath updated:", shortestPath);
-            drawPath(dLatLng);
-            createMarker(dLatLng, shortestPath);
+        if (searchClicked) {
+            if (map && markers && dLatLng && shortestPath) {
+                console.log("dLatLng updated:", dLatLng);
+                console.log("shortestPath updated:", shortestPath);
+                drawPath(dLatLng);
+                createMarker(dLatLng, shortestPath);
+            }
+
+            setSearchClicked(false); // Reset the searchClicked state variable
         }
     }, [map, markers, stateMarker, dLatLng, shortestPath]);
 
@@ -92,21 +98,56 @@ function KakaoMap() {
         }
     };
 
+    const getImgAdd = (imgName) => {
+        try {
+            const imgAdd = require(`../images/${imgName}`);
+            return imgAdd;
+        } catch (error) {
+            return null;
+        }
+    };
+    function imgChk(node){
+        const code = node + ".jpg";
+        try {
+            const imgAdd = getImgAdd(code);
+            if(imgAdd !== null){
+                const img = new Image();
+                img.src = imgAdd;
+                console.log(imgAdd + " 여기 마커 있어요.");
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (error) {
+            console.error();
+
+        }
+    }
+
     function createMarker(dLatLng, shortestPath) {
         if (map) {
             try {
                 deleteMarker(); // Delete previously existing markers
                 const newMarkers = [];
                 for (let i = 0; i < dLatLng.length; i++) {
-                    const markerPosition = new window.kakao.maps.LatLng(
-                        parseFloat(dLatLng[i][0]),
-                        parseFloat(dLatLng[i][1])
-                    );
-                    const newMarker = new window.kakao.maps.Marker({
-                        position: markerPosition,
-                    });
-                    newMarker.setMap(map);
-                    newMarkers.push(newMarker);
+
+                    const node = shortestPath[i];
+
+                    if(imgChk(node)===true){
+                        console.log("exist");
+                        const markerPosition = new window.kakao.maps.LatLng(
+                            parseFloat(dLatLng[i][0]),
+                            parseFloat(dLatLng[i][1])
+                        );
+                        const newMarker = new window.kakao.maps.Marker({
+                            position: markerPosition,
+                        });
+                        newMarker.setMap(map);
+                        newMarkers.push(newMarker);
+                    } else {
+                        console.log("none");
+                    }
                 }
                 setMarkers(newMarkers); // Set the new markers in the state variable
             } catch {
@@ -169,7 +210,8 @@ function KakaoMap() {
                                 console.log(nestedList);
                                 // Handle the nestedList data here
                                 setShortestPath(nestedList.shortestPath);
-                                setDLatLng(nestedList.dLatLng);
+                                setDLatLng(nestedList.dLatLng)
+                                setSearchClicked(true);
                             })
                             .catch(error => {
                                 console.log("Error:", error);
