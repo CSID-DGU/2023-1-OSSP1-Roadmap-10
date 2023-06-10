@@ -17,7 +17,6 @@ function KakaoMap() {
     const [markers, setMarkers] = useState([])
     const [iW, addIW] = useState([])
     const [path, setPath] = useState(null)
-    const [marker, setMarker] = useState(null)
     const [stateMarker, setStateMarker] = useState(true)
     const [start, SetStart] = useState()
     const [finish, SetFinish] = useState()
