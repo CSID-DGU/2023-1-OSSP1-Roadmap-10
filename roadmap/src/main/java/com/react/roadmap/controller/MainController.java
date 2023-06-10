@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class MainController {
@@ -26,7 +27,7 @@ public class MainController {
     }
 
     @GetMapping("map")
-    public List<List<Double>> dataInsert(@RequestParam String start, @RequestParam String finish) {
+    public Map<String, Object> dataInsert(@RequestParam String start, @RequestParam String finish) {
         System.out.println("Start: " + start);
         System.out.println("Finish: " + finish);
         Node[] nodeArr = appRunner.getNodeArr();
@@ -41,7 +42,12 @@ public class MainController {
         System.out.println("Shortest Path: " + shortestPath);
         System.out.println("dLatLng: " + dLatLng);
 
-        return dLatLng;
+        // Create a Map to store the results
+        Map<String, Object> result = new HashMap<>();
+        result.put("shortestPath", shortestPath);
+        result.put("dLatLng", dLatLng);
+
+        return result;
     }
 
 

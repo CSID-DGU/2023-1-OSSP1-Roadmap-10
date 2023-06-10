@@ -14,84 +14,107 @@ const loc = LocList();
 function KakaoMap() {
 
     const [map, settingMap] = useState(null);
-    const [render1, setRender1] = useState(true);
     const [markers, setMarkers] = useState([])
     const [iW, addIW] = useState([])
     const [path, setPath] = useState(null)
+    const [marker, setMarker] = useState(null)
     const [stateMarker, setStateMarker] = useState(true)
-    const [buttonText, setButtonText] = useState("감추기")
+    const [start, SetStart] = useState()
+    const [finish, SetFinish] = useState()
+    const [shortestPath, setShortestPath] = useState([])
+    const [dLatLng, setDLatLng] = useState([])
+    const [selectStart, setSelectStart] = useState(null)
+    const [selectFinish, setSelectFinish] = useState(null)
 
-    const addNewMarker = (newMarker) => {
-        setMarkers((prevMarker) => [...prevMarker, newMarker])
+
+    const cngMarker = (newMarker) => {
+        setMarkers(newMarker)
     }
+
     useEffect(() => {
-        const markerArray = []
-        const iWArray = []
+        if (!map) {
+            const script = document.createElement("script");
+            script.async = true;
+            script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=4df16387a395762838f3f668c6731805&autoload=false";
 
-
-        const script = document.createElement("script");
-        script.async = true;
-        script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=4df16387a395762838f3f668c6731805&autoload=false';
-
-
-        script.onload = () => {
-            window.kakao.maps.load(() => {
-                if (render1) {
-                    const container = document.getElementById('map');
+            script.onload = () => {
+                window.kakao.maps.load(() => {
+                    const container = document.getElementById("map");
                     const options = {
                         center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
                         level: 3
                     };
 
-                    const newMap = new window.kakao.maps.Map(container, options)
+                    const newMap = new window.kakao.maps.Map(container, options);
                     settingMap(newMap);
 
-
-                    loc.map((building) => {
-                        const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
-                        const newMarker = new window.kakao.maps.Marker({
-                            position: markerPosition
-                        });
-
-
-                        newMarker.setMap(newMap);
-                        newMarker.setMap(null);
-
-
-                        addNewMarker(newMarker);
-                        markerArray.push(newMarker)
-                    })
-
-                    var mapTypeControl = new window.kakao.maps.MapTypeControl();
-
+                    const mapTypeControl = new window.kakao.maps.MapTypeControl();
                     newMap.addControl(mapTypeControl, window.kakao.maps.ControlPosition.TOPRIGHT);
 
-                    var zoomControl = new window.kakao.maps.ZoomControl();
+                    const zoomControl = new window.kakao.maps.ZoomControl();
                     newMap.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
+                });
+            };
+
+            document.head.appendChild(script);
+            return () => {
+                document.head.removeChild(script);
+            };
+        } else if (markers && stateMarker) {
+            try {
+                cngMarker(showMarker(map, markers, iW));
+            } catch (error) {
+                console.log("Error:", error);
+            }
+        } else if (map && path) {
+            path.forEach((line) => line.setMap(null));
+            setPath([]);
+        }
+
+        if (map && markers && dLatLng && shortestPath) {
+            console.log("dLatLng updated:", dLatLng);
+            console.log("shortestPath updated:", shortestPath);
+            drawPath(dLatLng);
+            createMarker(dLatLng, shortestPath);
+        }
+    }, [map, markers, stateMarker, dLatLng, shortestPath]);
 
 
-
-                    setRender1(false)
-
-                }
-            })
-        };
-
-
-        document.head.appendChild(script);
-        return () => {
-            document.head.removeChild(script);
-        };
-    }, []);
-    
     const deleteLine = () => {
         if (map && path) {
             path.forEach((line) => line.setMap(null)); // Remove each line from the map
-            setPath([]); // Reset the path state variable
         }
     };
 
+    const deleteMarker = () => {
+        if (markers && markers.length > 0) {
+            markers.forEach((marker) => marker.setMap(null)); // Remove each marker from the map
+            setMarkers([]); // Clear the markers array
+        }
+    };
 
+    function createMarker(dLatLng, shortestPath) {
+        if (map) {
+            try {
+                deleteMarker(); // Delete previously existing markers
+                const newMarkers = [];
+                for (let i = 0; i < dLatLng.length; i++) {
+                    const markerPosition = new window.kakao.maps.LatLng(
+                        parseFloat(dLatLng[i][0]),
+                        parseFloat(dLatLng[i][1])
+                    );
+                    const newMarker = new window.kakao.maps.Marker({
+                        position: markerPosition,
+                    });
+                    newMarker.setMap(map);
+                    newMarkers.push(newMarker);
+                }
+                setMarkers(newMarkers); // Set the new markers in the state variable
+            } catch {
+                console.log("createMarker Error");
+            }
+        }
+    }
     function drawPath(nestedList) {
         if (map) {
             deleteLine(); // Delete the previously drawn path
@@ -116,8 +139,8 @@ function KakaoMap() {
         }
     }
 
-    const [start, SetStart] = useState();
-    const [finish, SetFinish] = useState();
+
+
 
     return (
         <div className="map-wrapper">
@@ -125,13 +148,13 @@ function KakaoMap() {
                 <select className="box-style" onChange={(e)=>{
                     SetStart(e.target.value);
                 }}>
-                    <option value = "" selected disabled>출발지 선택</option>
+                    <option selected disabled>출발지 선택</option>
                     {loc.map((building) => <option key={building.code} value={building.code}>{building.id}</option>)}
                 </select>
                 <select className="box-style" onChange={(e) =>{
                     SetFinish(e.target.value);
                 }}>
-                    <option value = "" selected disabled>도착지 선택</option>
+                    <option selected disabled>도착지 선택</option>
                     {loc.map((building) => <option key={building.code} value={building.code}>{building.id}</option>)}
                 </select>
                 <button className="button-style" onClick={
@@ -146,13 +169,14 @@ function KakaoMap() {
                                 const nestedList = response.data; // Assuming the response contains the List<List<Double>> structure
                                 console.log(nestedList);
                                 // Handle the nestedList data here
-                                drawPath(nestedList);
+                                setShortestPath(nestedList.shortestPath);
+                                setDLatLng(nestedList.dLatLng);
                             })
                             .catch(error => {
                                 console.log("Error:", error);
                             });
                     }
-                    
+
                 }
                 >경로 탐색</button>
             </div>
@@ -160,6 +184,7 @@ function KakaoMap() {
             <span>
                 <div id="map" className="map-style"></div>
             </span>
+            <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
         </div>
     )
 
