@@ -16,7 +16,7 @@ const LocList = () =>{
             "Lng": 126.999369,
             "facilities": [1,0,0,0,0,0,0,0,0],
             "explain": "중앙도서관 앞 카페입니다!",
-            "image": "../images/R49.jpg"
+            "image": "R49.jpg"
         },
         {
             "code": "MK",
@@ -35,7 +35,7 @@ const LocList = () =>{
             "Lng": 126.999175,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "XA.jpg"
         },
         {
             "code": "X",
@@ -44,7 +44,7 @@ const LocList = () =>{
             "Lng": 126.99890894109868,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "XB.jpg"
         },
         {
             "code": "W",
@@ -55,7 +55,7 @@ const LocList = () =>{
             "explain": "복사기: 1층" +
                 "유인복사실: 야외 교재실" +
                 "제세동기: 1층",
-            "image": ""
+            "image": "W0.jpg"
         },
         {
             "code": "R18C",
@@ -64,7 +64,7 @@ const LocList = () =>{
             "Lng": 127.0023178,
             "facilities": [1,0,0,0,0,0,0,0,0],
             "explain": "음료를 마실 수 있는 카페입니다.",
-            "image": ""
+            "image": "R18.jpg"
         },
         {
             "code": "F",
@@ -73,7 +73,7 @@ const LocList = () =>{
             "Lng": 127.0003621705126,
             "facilities": [0,0,1,0,0,0,0,0,0],
             "explain": "다향관 1층에 각종 문구류와 책을 살 수 있습니다.",
-            "image": ""
+            "image": "F0.jpg"
         },
         {
             "code": "G2",
@@ -91,7 +91,7 @@ const LocList = () =>{
             "Lng": 127.004984384394,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D7.jpg"
         },
         {
             "code": "D5",
@@ -100,7 +100,7 @@ const LocList = () =>{
             "Lng": 127.00083300537905,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D5.jpg"
         },
         {
             "code": "BM",
@@ -130,7 +130,7 @@ const LocList = () =>{
                 "제세동기: 1층, " +
                 "복사기: 1층, " +
                 "증명서자동발급기: 1층",
-            "image": ""
+            "image": "K2.jpg"
         },
         {
             "code": "BB",
@@ -149,7 +149,7 @@ const LocList = () =>{
             "Lng": 126.99949748962393,
             "facilities": [0,0,0,0,0,1,0,0,0],
             "explain": "제세동기: 3층, ",
-            "image": ""
+            "image": "N2.jpg"
         },
         {
             "code": "R76C",
@@ -158,7 +158,7 @@ const LocList = () =>{
             "Lng": 126.99964235549915,
             "facilities": [1,0,0,0,0,0,0,0,0],
             "explain": "음료를 마실 수 있는 카페입니다.",
-            "image": ""
+            "image": "R76.jpg"
         },
         {
             "code": "M",
@@ -195,7 +195,7 @@ const LocList = () =>{
                 "편의점: 1층" +
                 "ATM(신한): 1층" +
                 "복사기: 3층, 9층",
-            "image": ""
+            "image": "I1.jpg"
         },
         {
             "code": "D1",
@@ -213,7 +213,7 @@ const LocList = () =>{
             "Lng": 126.99888179552639,
             "facilities": [1,0,1,0,1,0,1,0,0],
             "explain": "",
-            "image": ""
+            "image": "E1.jpg"
         },
         {
             "code": "D8",
@@ -222,7 +222,7 @@ const LocList = () =>{
             "Lng": 127.0046629226596,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D8.jpg"
         },
         {
             "code": "D9",
@@ -240,7 +240,7 @@ const LocList = () =>{
             "Lng": 127.00118156166387,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "Y0.jpg"
         },
         {
             "code": "D0",
@@ -267,7 +267,7 @@ const LocList = () =>{
             "Lng": 126.99805,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D3.jpg"
         },
         {
             "code": "P",
@@ -294,7 +294,7 @@ const LocList = () =>{
             "Lng": 127.0018244,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "S0.jpg"
         },
         {
             "code": "C",
@@ -307,7 +307,7 @@ const LocList = () =>{
                 "복사기: 지하2층, 지하1층, 1층, 3층, 4층" +
                 "유인복사실: 지하1층" +
                 "증명서자동발급기: 2층",
-            "image": ""
+            "image": "C0.jpg"
         },
         {
             "code": "G",
@@ -316,7 +316,7 @@ const LocList = () =>{
             "Lng": 127.00026710476699,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "G0.jpg"
         },
         {
             "code": "OO",
@@ -325,7 +325,7 @@ const LocList = () =>{
             "Lng": 127.000181,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "O0.jpg"
         },
         {
             "code": "J",
@@ -339,7 +339,7 @@ const LocList = () =>{
                 "제세동기: 1층" +
                 "복사기: 1층, 2층" +
                 "증명서자동발급기: 1층",
-            "image": ""
+            "image": "J.jpg"
         },
         {
             "code": "Z",
@@ -381,7 +381,7 @@ const LocList = () =>{
             "Lng": 127.0016976,
             "facilities": [1,0,0,0,0,0,0,0,0],
             "explain": "음료를 마실 수 있는 카페입니다.",
-            "image": ""
+            "image": "R19.jpg"
         },
         {
             "code": "D6",
@@ -390,7 +390,7 @@ const LocList = () =>{
             "Lng": 127.0034814,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D6.jpg"
         },
         {
             "code": "T",
@@ -399,7 +399,7 @@ const LocList = () =>{
             "Lng": 127.00153014440032,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "T0.jpg"
         },
         {
             "code": "D4",
@@ -408,7 +408,7 @@ const LocList = () =>{
             "Lng": 126.999335,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D4.jpg"
         }
     ];
 

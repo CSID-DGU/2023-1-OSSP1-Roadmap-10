@@ -28,19 +28,14 @@ function BuildingInfoPage() {
     const addNewIW = (newInfoWindow) => {
         addIW((previW) => [...previW, newInfoWindow])
     }
-
-    function settest() {
-        if (map) {
-            if (test) {
-                Test(false)
-            }
-            else {
-                Test(true)
-            }
-            console.log("실험.." + test)
+    const getImgAdd = (imgName) => {
+        try {
+            const imgAdd = require(`../images/${imgName}`);
+            return imgAdd;
+        } catch (error) {
+            return null;
         }
-
-    }
+    };
 
     useEffect(() => {
 
@@ -147,6 +142,8 @@ function BuildingInfoPage() {
                     return facilities
                 }
 
+                const imageSrc = getImgAdd(building.image)
+
                 const wrapperDiv = document.createElement('div');
                 wrapperDiv.classList.add('overlay-wrapper');
 
@@ -170,7 +167,7 @@ function BuildingInfoPage() {
                 const imgWrapperDiv = document.createElement('div');
                 imgWrapperDiv.classList.add('overlay-img-wrapper');
                 const imgElement = document.createElement('img');
-                imgElement.src = building.image;
+                imgElement.src = imageSrc;
                 imgElement.alt = 'Building Image';
                 imgWrapperDiv.appendChild(imgElement);
                 contentWrapperDiv.appendChild(imgWrapperDiv);
