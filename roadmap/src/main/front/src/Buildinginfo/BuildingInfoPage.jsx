@@ -95,7 +95,8 @@ function BuildingInfoPage() {
             loc.map((building) => {
                 const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
                 const newMarker = new window.kakao.maps.Marker({
-                    position: markerPosition
+                    position: markerPosition,
+                    zIndex : 4
                 });
 
 
@@ -105,25 +106,93 @@ function BuildingInfoPage() {
                 markerArray.push(newMarker)
 
                 const newInfoWindow = new window.kakao.maps.CustomOverlay({
-                    clickable: true,
+                    clickable: false,
                     map: map,
                     position: newMarker.getPosition(),
                     removable: true,
+                    zIndex: 5
                 })
 
-                const contents =
-                    `<div class="overlay-wrapper">
-                        <div class="overlay-bar"><h>${building.id}</h><div class = "xmark"><i class="fa-solid fa-xmark"}></i></div></div>
-                        <body class = "overlay-content-wrapper">
-                            <div class= "overlay-img-wrapper"><i class="fa-solid fa-xmark"></i></img></div>
-                            <div class="overlay-text-wrapper">
-                                <p>편의시설: ${building.facilities}</p>
-                                <p>학사운영실 위치/전화번호:</p>
-                                <button id = 'closeButton'>HOME</button>
-                            </div>
-                        </body>
-                    </div>`;
+                
 
+
+                function explainfacilities(){
+                    const facilities  = []
+                    let forIndex = 0;
+                    building.facilities.forEach((index)=>{
+                        if(index === 1){
+                            if(forIndex === 0){
+                                facilities.push("카페")
+                            }else if(forIndex === 1){
+                                facilities.push("식당")
+                            }else if(forIndex === 2){
+                                facilities.push("편의점")
+                            }else if(forIndex === 3){
+                                facilities.push("ATM")
+                            }else if(forIndex === 4){
+                                facilities.push("열람실")
+                            }else if(forIndex === 5){
+                                facilities.push("제세동기")
+                            }else if(forIndex === 6){
+                                facilities.push("복사기")
+                            }else if(forIndex === 7){
+                                facilities.push("유인복사기")
+                            }else if(forIndex === 8){
+                                facilities.push("증명서자동발급기")
+                            }
+                        }
+                        forIndex ++;
+                    })
+
+                    return facilities
+                }
+
+                const wrapperDiv = document.createElement('div');
+                wrapperDiv.classList.add('overlay-wrapper');
+
+                const barDiv = document.createElement('div');
+                barDiv.classList.add('overlay-bar');
+                const hElement = document.createElement('h');
+                hElement.textContent = building.id;
+                const xmarkDiv = document.createElement('div');
+                xmarkDiv.classList.add('xmark');
+                const iElement = document.createElement('i');
+                iElement.classList.add('fa-solid', 'fa-xmark');
+                iElement.addEventListener('click', closeOverlay);
+                xmarkDiv.appendChild(iElement);
+                barDiv.appendChild(hElement);
+                barDiv.appendChild(xmarkDiv);
+                wrapperDiv.appendChild(barDiv);
+
+                const contentWrapperDiv = document.createElement('div');
+                contentWrapperDiv.classList.add('overlay-content-wrapper');
+
+                const imgWrapperDiv = document.createElement('div');
+                imgWrapperDiv.classList.add('overlay-img-wrapper');
+                const imgElement = document.createElement('img');
+                imgElement.src = building.image;
+                imgElement.alt = 'Building Image';
+                imgWrapperDiv.appendChild(imgElement);
+                contentWrapperDiv.appendChild(imgWrapperDiv);
+
+                const textWrapperDiv = document.createElement('div');
+                textWrapperDiv.classList.add('overlay-text-wrapper');
+                const facilitiesParagraph = document.createElement('p');
+                facilitiesParagraph.textContent = `편의시설: ${explainfacilities()}`;
+                const explainParagraph = document.createElement('p');
+                explainParagraph.textContent = `${building.explain}`;
+                const locationParagraph = document.createElement('p');
+                locationParagraph.textContent = '학사운영실 위치/전화번호:';
+                const closeButton = document.createElement('button');
+                closeButton.id = 'closeButton';
+                closeButton.textContent = 'HOME';
+                textWrapperDiv.appendChild(facilitiesParagraph);
+                textWrapperDiv.appendChild(explainParagraph);
+                textWrapperDiv.appendChild(locationParagraph);
+                textWrapperDiv.appendChild(closeButton);
+                contentWrapperDiv.appendChild(textWrapperDiv);
+
+                wrapperDiv.appendChild(contentWrapperDiv);
 
                 function closeOverlay() {
                     if (map) {
@@ -136,15 +205,9 @@ function BuildingInfoPage() {
                     }
                 }
 
-                newInfoWindow.setContent(contents)
-
-
-                
+                newInfoWindow.setContent(wrapperDiv)
 
                 newInfoWindow.setMap(map)
-
-
-
 
                 window.kakao.maps.event.addListener(newMarker, 'click', closeOverlay)
 
