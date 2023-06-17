@@ -112,7 +112,7 @@ section#hero {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -45%);
-    height: calc(100vh -60px);
+    height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -226,10 +226,47 @@ select option [value = ""][disabled]{
     height: 100px;
     margin : 10px;
     right : 0.5px;
-    overflow: overlay;
 }
 .overlay-wrapper .overlay-text-wrapper p{
     padding : 2px;
+}
+.overlay-wrapper-onlyimg{
+    position: relative;
+    transform: translate(36%,-75%);
+    width: 160px;
+    height: 160px;
+    margin-left: -144px;
+    text-align: center;
+    font-size: 12px;
+    overflow: hidden;
+    font-family: 'neon';
+    border-radius: 10px;
+    background-color: #fff;
+    z-index: 2;
+}
+.overlay-wrapper-onlyimg .overlay-bar{
+    display:flex;
+    padding:10px;
+    background-color: cadetblue;
+    align-items: center;
+    justify-content: space-between;
+    height : 2rem;
+    text-align: right;
+    flex-direction: row-reverse;
+}
+.overlay-wrapper-onlyimg .overlay-img-wrapper{
+    top:10px;
+    left: 5px;
+    width: 140px;
+    height: 79px;
+    border:1px;
+    float: left;
+    flex:auto;
+}
+.overlay-wrapper-onlyimg .overlay-img-wrapper img{
+    width: 140px;
+    height: 100px;
+    margin: 10px;
 }
 
 /* 반응형 디자인 */

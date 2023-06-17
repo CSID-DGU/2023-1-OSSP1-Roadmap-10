@@ -183,7 +183,7 @@ const LocList = () =>{
             "explain": "식당: 1층(솥앤누들, 버거킹), 2층(상록원 학생식당), 3층(교직원 식당)" +
                 "ATM(신한, 국민): 1층" +
                 "편의점: 1층",
-            "image": "상록원.jpg"
+            "image": "상록원.JPG"
         },
         {
             "code": "I",
@@ -360,7 +360,7 @@ const LocList = () =>{
             "facilities": [1,0,0,0,0,0,1,0,0],
             "explain": "카페(두리터): 지하1층, " +
                 "복사기: 1층",
-            "image": "학술관.jpg"
+            "image": "학술관.JPG"
         },
         {
             "code": "H",
@@ -373,7 +373,7 @@ const LocList = () =>{
                 "ATM(국민): 1층" +
                 "열람실: 1층 라운지" +
                 "복사기: 1층",
-            "image": "혜화관.jpg"
+            "image": "혜화관.JPG"
         },
         {
             "code": "R19C",

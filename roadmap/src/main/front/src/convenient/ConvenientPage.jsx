@@ -18,42 +18,17 @@ function ConvenientPage() {
     const [iW, addIW] = useState([])
     const [path,setPath] = useState(null)
     const [stateMarker,setStateMarker] = useState(true)
-    const [buttonText, setButtonText] = useState("감추기")
     const [convNum, setSelectedValue] = useState('')
 
-
-    const changeStateMarker = () =>{
-        if(stateMarker){
-            setStateMarker(false)
-            setButtonText("띄우기")
-        }else{
-            setStateMarker(true)
-            setButtonText("감추기")
-        }
-    }
-    const [selectStart, setSelectStart] = useState(null)
-    const [selectFinish, setSelectFinish] = useState(null)
-    const [bothNode, setNode] = useState([null,null])//출발점과 도착점
     const addNewMarker = (newMarker) => {
         setMarkers((prevMarker) => [...prevMarker, newMarker])
     }
     const cngMarker = (newMarker) => {
         setMarkers(newMarker)
     }
-    const addNewIW = (newInfoWindow) => {
-        addIW((previW) => [...previW, newInfoWindow])
-    }
-    const addStartNode = (newNode) => {
-        setSelectStart(newNode)
-        setNode([newNode,bothNode[1]])
-    }
-    const addFinishNode = (newNode) => {
-        setSelectFinish(newNode)
-        setNode([bothNode[0],newNode])
-    }
+
     useEffect(() => {
         const markerArray = []
-        const iWArray = []
 
 
         const script = document.createElement("script");
@@ -97,36 +72,9 @@ function ConvenientPage() {
             document.head.removeChild(script);
         };
     }, []);
-    const deleteLine = () => {
-        if (map) {
-            if(path){
-                console.log("정상 실행")
-                path.setMap(null)
-            }
-            setPath()
-        }
-    }
-    const startNode = (e) =>{
-        addStartNode(e.target.value)
-    }
-    const finishNode = (e) =>{
-        addFinishNode(e.target.value)
-    }
-    const makeLine = () => {
-        if (map) {
-            deleteLine()
-            try {
-                setPath(drawLine(map, bothNode))
-            } catch {
-                console.log("drawline's error")
-            }
-        }
-    }
-    const center = () => {
-        if (map) {
-            moveCenter(map)
-        }
-    }
+
+
+
 
     useEffect(() => {
         if (map && markers) {
@@ -155,6 +103,9 @@ function ConvenientPage() {
                     const newMarker = new window.kakao.maps.Marker({
                         position: markerPosition
                     });
+                    const imgCode = node + ".jpg"
+                    const infoImg = getImgAdd(imgCode)
+
                     newMarker.setMap(map);
                     markerArray.push(newMarker);
                 }
@@ -163,16 +114,6 @@ function ConvenientPage() {
             setMarkers(markerArray);
         }
     }, [stateMarker, convNum]);
-
-
-
-
-
-    const findConv = (e) =>{
-        setSelectedValue(e.target.value);
-    }
-
-    const markerArray = [];
 
 
 
@@ -196,7 +137,6 @@ function ConvenientPage() {
             <span>
                 <div id="map" className="map-style"></div>
             </span>
-            <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
         </div>
     )
 

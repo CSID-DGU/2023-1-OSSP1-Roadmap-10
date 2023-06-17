@@ -25,6 +25,9 @@ function KakaoMap() {
     const [selectStart, setSelectStart] = useState(null)
     const [selectFinish, setSelectFinish] = useState(null)
     const [searchClicked, setSearchClicked] = useState(false)
+    const [image,setImage] = useState([])
+
+
 
 
 
@@ -72,7 +75,7 @@ function KakaoMap() {
             setPath([]);
         }
 
-        if (searchClicked) {
+        /*if (searchClicked) {
             if (map && markers && dLatLng && shortestPath) {
                 console.log("dLatLng updated:", dLatLng);
                 console.log("shortestPath updated:", shortestPath);
@@ -81,9 +84,23 @@ function KakaoMap() {
             }
 
             setSearchClicked(false); // Reset the searchClicked state variable
-        }
-    }, [map, markers, stateMarker, dLatLng, shortestPath,path]);
+        }*/
+    }, [map, markers, stateMarker, dLatLng, shortestPath,path,iW]);
 
+    useEffect(() => {
+        if(map) {
+            if (searchClicked) {
+                if (map && markers && dLatLng && shortestPath) {
+                    console.log("dLatLng updated:", dLatLng);
+                    console.log("shortestPath updated:", shortestPath);
+                    drawPath(dLatLng);
+                    createMarker(dLatLng, shortestPath);
+                }
+
+                setSearchClicked(false); // Reset the searchClicked state variable
+            }
+        }
+    },[markers,stateMarker,dLatLng,shortestPath,path,iW])
 
     const deleteLine = () => {
         if (map && path) {
@@ -93,7 +110,9 @@ function KakaoMap() {
 
     const deleteMarker = () => {
         if (markers && markers.length > 0) {
-            markers.forEach((marker) => marker.setMap(null)); // Remove each marker from the map
+            markers.forEach((marker) => {marker.setMap(null)});// Remove each marker from the map
+            iW.forEach((iW) => {iW.setMap(null)});// Remove each infoWindow from the map
+            addIW([]);// Clear the iW array
             setMarkers([]); // Clear the markers array
         }
     };
@@ -130,9 +149,11 @@ function KakaoMap() {
             try {
                 deleteMarker(); // Delete previously existing markers
                 const newMarkers = [];
+                const newiW = [];
                 for (let i = 0; i < dLatLng.length; i++) {
 
                     const node = shortestPath[i];
+
                     if(i===0 || i === dLatLng.length - 1){
                         const markerPosition = new window.kakao.maps.LatLng(
                             parseFloat(dLatLng[i][0]),
@@ -148,32 +169,92 @@ function KakaoMap() {
                     if(imgChk(node)===true){
                         console.log("exist");
                         const camera = "camera.png";
+                        const imgCode = node + ".jpg"
+                        const infoImg = getImgAdd(imgCode)
 
                         const imageSrc = getImgAdd(camera), // 마커이미지의 주소입니다
                             imageSize = new kakao.maps.Size(32, 35), // 마커이미지의 크기입니다
                             imageOption = {offset: new kakao.maps.Point(14, 20)};
 
-                        const markerImage  = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+                        const markerImage  = new window.kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
                             markerPosition = new window.kakao.maps.LatLng(
                             parseFloat(dLatLng[i][0]),
                             parseFloat(dLatLng[i][1])
                         );
                         const newMarker = new window.kakao.maps.Marker({
                             position: markerPosition,
-                            image: markerImage
+                            image: markerImage,
+                            clickable: true
                         });
+
+                        const newInfo = new window.kakao.maps.CustomOverlay({
+                            clickable: false,
+                            map: map,
+                            position: newMarker.getPosition(),
+                            removable: true,
+                            zIndex: 5
+                        })
+
+                        const wrapperDiv = document.createElement('div');
+                        wrapperDiv.classList.add('overlay-wrapper-onlyimg');
+
+                        const barDiv = document.createElement('div');
+                        barDiv.classList.add('overlay-bar');
+
+                        const xmarkDiv = document.createElement('div');
+                        xmarkDiv.classList.add('xmark');
+                        const iElement = document.createElement('i');
+                        iElement.classList.add('fa-solid', 'fa-xmark');
+                        iElement.addEventListener('click', closeOverlay);
+                        xmarkDiv.appendChild(iElement);
+
+                        const imgWrapperDiv = document.createElement('div');
+                        imgWrapperDiv.classList.add('overlay-img-wrapper');
+                        const imgElement = document.createElement('img');
+                        imgElement.src = infoImg;
+                        imgElement.alt = 'Building Image';
+                        imgWrapperDiv.appendChild(imgElement);
+
+                        barDiv.appendChild(xmarkDiv);
+                        wrapperDiv.appendChild(barDiv);
+                        wrapperDiv.appendChild(imgWrapperDiv);
+
+                        newInfo.setContent(wrapperDiv)
+
+                        function closeOverlay() {
+                            if (map) {
+                                if (newInfo.getMap() === null) {
+                                    newInfo.setMap(map, newMarker)
+                                }
+                                else {
+                                    newInfo.setMap(null)
+                                }
+                            }
+                        }
+
+                        newInfo.setMap(null)
+                        newiW.push(newInfo)
+
+                        window.kakao.maps.event.addListener(newMarker, 'click', function(){
+                            closeOverlay();
+                            console.log("버튼 눌림")
+                        });
+
                         newMarker.setMap(map);
                         newMarkers.push(newMarker);
+
                     } else {
                         console.log("none");
                     }
                 }
+                addIW((newiW))
                 setMarkers(newMarkers); // Set the new markers in the state variable
             } catch {
                 console.log("createMarker Error");
             }
         }
     }
+
     function drawPath(nestedList) {
         if (map) {
             deleteLine(); // Delete the previously drawn path
@@ -228,6 +309,7 @@ function KakaoMap() {
                                 const nestedList = response.data; // Assuming the response contains the List<List<Double>> structure
                                 console.log(nestedList);
                                 // Handle the nestedList data here
+                                setImage(nestedList.image)
                                 setShortestPath(nestedList.shortestPath);
                                 setDLatLng(nestedList.dLatLng)
                                 setSearchClicked(true);
@@ -244,7 +326,6 @@ function KakaoMap() {
             <span>
                 <div id="map" className="map-style"></div>
             </span>
-            <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
         </div>
     )
 
