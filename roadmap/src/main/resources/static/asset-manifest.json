@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.f0f8533e.js",
+    "main.js": "/static/js/main.30ad117f.js",
     "static/media/정q.jpg": "/static/media/정q.09c7a8d1ea0673e7a4ea.jpg",
     "static/media/학술관.JPG": "/static/media/학술관.6d77a4c605f9b4a23552.JPG",
     "static/media/혜화관.JPG": "/static/media/혜화관.05fa663ccaf5b9bb0abd.JPG",
@@ -60,9 +60,9 @@
     "static/media/camera.png": "/static/media/camera.ce5238812ddd0bdcd47a.png",
     "static/media/ROADMAP_6.png": "/static/media/ROADMAP_6.85b352c95fa8349d441a.png",
     "index.html": "/index.html",
-    "main.f0f8533e.js.map": "/static/js/main.f0f8533e.js.map"
+    "main.30ad117f.js.map": "/static/js/main.30ad117f.js.map"
   },
   "entrypoints": [
-    "static/js/main.f0f8533e.js"
+    "static/js/main.30ad117f.js"
   ]
 }
