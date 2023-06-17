@@ -177,14 +177,12 @@ function BuildingInfoPage() {
                 const facilitiesParagraph = document.createElement('p');
                 facilitiesParagraph.textContent = `편의시설: ${explainfacilities()}`;
                 const explainParagraph = document.createElement('p');
-                explainParagraph.innerHTML = building.explain.replace(/\n/g, "<br>");                const locationParagraph = document.createElement('p');
-                locationParagraph.textContent = '학사운영실 위치/전화번호:';
+                explainParagraph.innerHTML = building.explain.replace(/\n/g, "<br>");
                 const closeButton = document.createElement('button');
                 closeButton.id = 'closeButton';
                 closeButton.textContent = 'HOME';
                 textWrapperDiv.appendChild(facilitiesParagraph);
                 textWrapperDiv.appendChild(explainParagraph);
-                textWrapperDiv.appendChild(locationParagraph);
                 textWrapperDiv.appendChild(closeButton);
                 contentWrapperDiv.appendChild(textWrapperDiv);
 
@@ -219,9 +217,6 @@ function BuildingInfoPage() {
         if (map) {
             iW.map(info => {
                 info.setMap(null)
-                
-                console.log(i);
-                
                 i++;
             })
         }

@@ -7,7 +7,7 @@ const LocList = () =>{
             "Lng": 127.0033455,
             "facilities": [0,1,0,0,0,0,0,0,0],
             "explain": "맛있는 식당입니다!",
-            "image": ""
+            "image": "R20.jpg"
         },
         {
             "code": "R49C",
@@ -26,7 +26,7 @@ const LocList = () =>{
             "facilities": [0,0,0,0,1,0,1,0,0],
             "explain": "열람실(비즈마루): 지하1층" +
                 "복사기: 1층",
-            "image": "경영관.jpg"
+            "image": "MK.jpg"
         },
         {
             "code": "XA",
@@ -56,7 +56,7 @@ const LocList = () =>{
                 "유인복사실: 야외 교재실" +
                 "제세동기: 1층" +
                 "학사운영실/시간: 10시 18시",
-            "image": "W0.jpg"
+            "image": "W.jpg"
         },
         {
             "code": "R18C",
@@ -83,7 +83,7 @@ const LocList = () =>{
             "Lng": 127.00066999579639,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "G2.jpg"
         },
         {
             "code": "D7",
@@ -110,7 +110,7 @@ const LocList = () =>{
             "Lng": 127.0008737,
             "facilities": [0,0,0,0,0,0,1,0,0],
             "explain": "복사기: 2층",
-            "image": "만해관.jpg"
+            "image": "BM.jpg"
         },
         {
             "code": "A",
@@ -119,7 +119,7 @@ const LocList = () =>{
             "Lng": 126.99996831050905,
             "facilities": [0,0,0,0,0,0,1,0,0],
             "explain": "복사기: 1층",
-            "image": "명진관.jpg"
+            "image": "A.jpg"
         },
         {
             "code": "K",
@@ -141,7 +141,7 @@ const LocList = () =>{
             "facilities": [0,0,1,0,0,1,0,0,0],
             "explain": "제세동기: 1층, " +
                 "편의점: 2층",
-            "image": "법학관.jpg"
+            "image": "BB.jpg"
         },
         {
             "code": "N",
@@ -172,7 +172,7 @@ const LocList = () =>{
                 "복사기: 2층, " +
                 "유인복사실: 2층, " +
                 "증명서자동발급기: 3층",
-            "image": "사회과학관.jpg"
+            "image": "M.jpg"
         },
         {
             "code": "FF",
@@ -183,7 +183,7 @@ const LocList = () =>{
             "explain": "식당: 1층(솥앤누들, 버거킹), 2층(상록원 학생식당), 3층(교직원 식당)" +
                 "ATM(신한, 국민): 1층" +
                 "편의점: 1층",
-            "image": "상록원.JPG"
+            "image": "FF.jpg"
         },
         {
             "code": "I",
@@ -205,7 +205,7 @@ const LocList = () =>{
             "Lng": 126.99766,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D1.jpg"
         },
         {
             "code": "E",
@@ -232,7 +232,7 @@ const LocList = () =>{
             "Lng": 127.0034994,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D9.jpg"
         },
         {
             "code": "Y",
@@ -250,7 +250,7 @@ const LocList = () =>{
             "Lng": 127.0032232,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D0.jpg"
         },
         {
             "code": "D2",
@@ -259,7 +259,7 @@ const LocList = () =>{
             "Lng": 126.998305,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": ""
+            "image": "D2.jpg"
         },
         {
             "code": "D3",
@@ -277,7 +277,7 @@ const LocList = () =>{
             "Lng": 126.99857846327879,
             "facilities": [0,0,0,0,0,0,1,0,0],
             "explain": "복사기: 3층",
-            "image": ""
+            "image": "P.jpg"
         },
         {
             "code": "Q",
@@ -286,7 +286,7 @@ const LocList = () =>{
             "Lng": 126.9983430440475,
             "facilities": [0,0,0,0,0,0,0,0,0],
             "explain": "",
-            "image": "정q.jpg"
+            "image": "Q.jpg"
         },
         {
             "code": "S",
@@ -350,7 +350,7 @@ const LocList = () =>{
             "facilities": [0,0,0,0,1,0,1,0,0],
             "explain": "열람실(i space): 1층, " +
                 "복사기: 1층",
-            "image": "학생회관.jpg"
+            "image": "Z.jpg"
         },
         {
             "code": "L",
@@ -360,7 +360,7 @@ const LocList = () =>{
             "facilities": [1,0,0,0,0,0,1,0,0],
             "explain": "카페(두리터): 지하1층, " +
                 "복사기: 1층",
-            "image": "학술관.JPG"
+            "image": "L.jpg"
         },
         {
             "code": "H",
@@ -373,7 +373,7 @@ const LocList = () =>{
                 "ATM(국민): 1층" +
                 "열람실: 1층 라운지" +
                 "복사기: 1층",
-            "image": "혜화관.JPG"
+            "image": "H.jpg"
         },
         {
             "code": "R19C",
