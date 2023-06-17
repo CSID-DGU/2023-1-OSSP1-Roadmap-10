@@ -50,7 +50,7 @@ function BuildingInfoPage() {
                 if (render1) {
                     const container = document.getElementById('map');
                     const options = {
-                        center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
+                        center: new window.kakao.maps.LatLng(37.55803420483414, 127.00088278271602),
                         level: 3
                     };
 
@@ -175,17 +175,12 @@ function BuildingInfoPage() {
                 const textWrapperDiv = document.createElement('div');
                 textWrapperDiv.classList.add('overlay-text-wrapper');
                 const facilitiesParagraph = document.createElement('p');
-                facilitiesParagraph.textContent = `편의시설: ${explainfacilities()}`;
                 const explainParagraph = document.createElement('p');
                 explainParagraph.innerHTML = building.explain.replace(/\n/g, "<br>");                const locationParagraph = document.createElement('p');
-                locationParagraph.textContent = '학사운영실 위치/전화번호:';
-                const closeButton = document.createElement('button');
-                closeButton.id = 'closeButton';
-                closeButton.textContent = 'HOME';
+
                 textWrapperDiv.appendChild(facilitiesParagraph);
                 textWrapperDiv.appendChild(explainParagraph);
                 textWrapperDiv.appendChild(locationParagraph);
-                textWrapperDiv.appendChild(closeButton);
                 contentWrapperDiv.appendChild(textWrapperDiv);
 
                 wrapperDiv.appendChild(contentWrapperDiv);
