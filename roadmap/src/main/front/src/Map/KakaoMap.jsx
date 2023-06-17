@@ -133,6 +133,17 @@ function KakaoMap() {
                 for (let i = 0; i < dLatLng.length; i++) {
 
                     const node = shortestPath[i];
+                    if(i===0 || i === dLatLng.length - 1){
+                        const markerPosition = new window.kakao.maps.LatLng(
+                            parseFloat(dLatLng[i][0]),
+                            parseFloat(dLatLng[i][1])
+                        );
+                        const newMarker = new window.kakao.maps.Marker({
+                            position: markerPosition,
+                        });
+                        newMarker.setMap(map);
+                        newMarkers.push(newMarker);
+                    }
 
                     if(imgChk(node)===true){
                         console.log("exist");
@@ -140,7 +151,7 @@ function KakaoMap() {
 
                         const imageSrc = getImgAdd(camera), // 마커이미지의 주소입니다
                             imageSize = new kakao.maps.Size(32, 35), // 마커이미지의 크기입니다
-                            imageOption = {offset: new kakao.maps.Point(14, 34)};
+                            imageOption = {offset: new kakao.maps.Point(14, 20)};
 
                         const markerImage  = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
                             markerPosition = new window.kakao.maps.LatLng(
