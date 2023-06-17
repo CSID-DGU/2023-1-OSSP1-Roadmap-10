@@ -50,7 +50,7 @@ function BuildingInfoPage() {
                 if (render1) {
                     const container = document.getElementById('map');
                     const options = {
-                        center: new window.kakao.maps.LatLng(37.55803420483414, 127.00088278271602),
+                        center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
                         level: 3
                     };
 
@@ -108,7 +108,7 @@ function BuildingInfoPage() {
                     zIndex: 5
                 })
 
-                
+
 
 
                 function explainfacilities(){
@@ -176,11 +176,15 @@ function BuildingInfoPage() {
                 textWrapperDiv.classList.add('overlay-text-wrapper');
                 const facilitiesParagraph = document.createElement('p');
                 const explainParagraph = document.createElement('p');
-                explainParagraph.innerHTML = building.explain.replace(/\n/g, "<br>");                const locationParagraph = document.createElement('p');
-
+                explainParagraph.innerHTML = building.explain.replace(/\n/g, "<br>");
+                const locationParagraph = document.createElement('p');
+                const closeButton = document.createElement('button');
+                closeButton.id = 'closeButton';
+                closeButton.textContent = 'HOME';
                 textWrapperDiv.appendChild(facilitiesParagraph);
                 textWrapperDiv.appendChild(explainParagraph);
                 textWrapperDiv.appendChild(locationParagraph);
+                textWrapperDiv.appendChild(closeButton);
                 contentWrapperDiv.appendChild(textWrapperDiv);
 
                 wrapperDiv.appendChild(contentWrapperDiv);
