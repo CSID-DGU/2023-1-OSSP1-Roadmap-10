@@ -82,7 +82,7 @@ function KakaoMap() {
 
             setSearchClicked(false); // Reset the searchClicked state variable
         }
-    }, [map, markers, stateMarker, dLatLng, shortestPath]);
+    }, [map, markers, stateMarker, dLatLng, shortestPath,path]);
 
 
     const deleteLine = () => {

@@ -158,74 +158,6 @@ select option [value = ""][disabled]{
     font-weight: bold;
     cursor: pointer;
 }
-
-/* 반응형 디자인 */
-@media(max-width: 992px) {
-
-    .navbar .links,
-    .title {
-        display: none;
-    }
-
-    .navbar .toggle_btn {
-        display: block;
-    }
-
-    .dropdown_menu {
-        display: block;
-    }
-    .box-style{
-        padding: 1em 2em;
-        font-size: .6em;
-    }
-    .button-style{
-        padding: 1em 2em;
-        font-size: .6em;
-    }
-    .map-wrapper{
-        width: 100vw;
-    }
-    .map-style{
-        width:95vw;
-        height: 40vh;
-    }
-    img{
-        width: 50vw;
-        height: 15vw;
-    }
-    header{
-        padding: 0;
-    }
-}
-
-/*모바일 메뉴*/
-.dropdown_menu {
-    z-index: 999;
-    position: absolute;
-    right: 1.3rem;
-    top: 60px;
-    height: 0;
-    width: 160px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.dropdown_menu li {
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.dropdown_menu li a{
-    font-size:.7em;
-}
-
-.dropdown_menu.open {
-    height: 100px;
-}
 /*오버레이 스타일*/
 .overlay-wrapper{
     position: relative;
@@ -291,11 +223,98 @@ select option [value = ""][disabled]{
 .overlay-wrapper .overlay-text-wrapper{
     flex : auto;
     width: 160px;
-    height: 80px;
+    height: 100px;
     margin : 10px;
     right : 0.5px;
     overflow: overlay;
 }
 .overlay-wrapper .overlay-text-wrapper p{
     padding : 2px;
+}
+
+/* 반응형 디자인 */
+@media(max-width: 992px) {
+
+    .navbar .links,
+    .title {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+    .dropdown_menu {
+        display: block;
+    }
+    .box-style{
+        padding: 1em 2em;
+        font-size: .6em;
+    }
+    .button-style{
+        padding: 1em 2em;
+        font-size: .6em;
+    }
+    .map-wrapper{
+        width: 100vw;
+    }
+    .map-style{
+        width:95vw;
+        height: 40vh;
+    }
+    img{
+        width: 50vw;
+        height: 15vw;
+    }
+    header{
+        padding: 0;
+    }
+    .overlay-wrapper{
+        width : 250px;
+        height : 130px;
+    }
+    .overlay-wrapper .overlay-text-wrapper{
+        width : 50%;
+        height: 50%;
+    }
+    .overlay-wrapper .overlay-text-wrapper p{
+        font-size: 50%;
+    }
+    .overlay-wrapper .overlay-img-wrapper{
+        width: 50%;
+        height: 50%;
+    }
+    .overlay-wrapper .overlay-img-wrapper img{
+        width: 75%;
+        height: 50%;
+    }
+}
+
+/*모바일 메뉴*/
+.dropdown_menu {
+    z-index: 999;
+    position: absolute;
+    right: 1.3rem;
+    top: 60px;
+    height: 0;
+    width: 160px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu li {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdown_menu li a{
+    font-size:.7em;
+}
+
+.dropdown_menu.open {
+    height: 100px;
 }
