@@ -1168,8 +1168,8 @@
   {
     "code": "L1",
     "centralNode": null,
-    "latitude": 37.5595693934573,
-    "longitude": 127.005183625372,
+    "latitude": 37.55826841595631,
+    "longitude": 127.00348587086572,
     "nearNode0": "R5",
     "weight0": 67.21,
     "nearNode1": "L",
