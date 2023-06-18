@@ -146,16 +146,16 @@
 ## Mobile버전 사진
 
 
-![KakaoTalk_20230619_012724613](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/a66d4878-4102-4af9-a150-33c19718bac1)
+![KakaoTalk_20230619_012724613](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/a66d4878-4102-4af9-a150-33c19718bac1){: width="30%" height="30%"}
 메인 페이지 사진
 
 
-![KakaoTalk_20230619_012724613_01](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/feb6c81b-8a4f-4c4d-972d-a93bceca2d2d)
+![KakaoTalk_20230619_012724613_01](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/feb6c81b-8a4f-4c4d-972d-a93bceca2d2d){: width="30%" height="30%"}
 경로 탐색 페이지 사진
 
 
 
-![KakaoTalk_20230619_012724613_02](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/554f01ab-1c43-4461-b377-92c6c5d80f1e)
+![KakaoTalk_20230619_012724613_02](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/554f01ab-1c43-4461-b377-92c6c5d80f1e){: width="30%" height="30%"}
 편의시설 페이지 
 
 
