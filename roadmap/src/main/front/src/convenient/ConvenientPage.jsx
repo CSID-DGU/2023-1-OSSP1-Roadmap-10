@@ -1,10 +1,7 @@
 /*global kakao*/
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState } from "react";
 import LocList from "../components/buildinginfo";
-import drawLine from "../components/Line";
-import moveCenter from "../components/moveCenter";
 import { hideMarker, showMarker } from "../components/Marker";
-import axios from "axios";
 
 
 const { kakao } = window;
@@ -18,7 +15,6 @@ function ConvenientPage() {
     const [iW, addIW] = useState([])
     const [path,setPath] = useState(null)
     const [stateMarker,setStateMarker] = useState(true)
-    const [buttonText, setButtonText] = useState("감추기")
     const [convNum, setSelectedValue] = useState('')
 
     const addNewMarker = (newMarker) => {
@@ -30,7 +26,6 @@ function ConvenientPage() {
 
     useEffect(() => {
         const markerArray = []
-        const iWArray = []
 
 
         const script = document.createElement("script");
@@ -144,7 +139,7 @@ function ConvenientPage() {
 
                     newInfo.setContent(wrapperDiv)
 
-                    newInfo.setMap(map);
+                    newInfo.setMap(null);
                     IwArray.push(newInfo);
 
                     function closeOverlay() {
@@ -180,8 +175,6 @@ function ConvenientPage() {
     const findConv = (e) =>{
         setSelectedValue(e.target.value);
     }
-
-    const markerArray = [];
 
 
 
