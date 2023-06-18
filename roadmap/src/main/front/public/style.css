@@ -12,7 +12,7 @@
 body {
     height: 100vh;
     background-color: black;
-    background-image: url("1920px-DONGGUK_UNIVERSITY_ED8C94ECA095EB8F84.png");
+    background-image: url("university.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -322,7 +322,7 @@ select option [value = ""][disabled]{
     }
     .overlay-wrapper .overlay-img-wrapper img{
         width: 80%;
-        height: 50%;
+        height: 75px;
     }
 }
 

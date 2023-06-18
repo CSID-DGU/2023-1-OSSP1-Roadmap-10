@@ -1,7 +1,3 @@
-import LocList from "./buildinginfo";
-
-const loc = LocList();
-
 const drawLine = (map, startLatLng, finishLatLng) => {
     const path = [startLatLng, finishLatLng];
 
