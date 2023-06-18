@@ -1,10 +1,9 @@
 /*global kakao*/
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios"
 import LocList from "../components/buildinginfo";
 import drawLine from "../components/Line";
-import moveCenter from "../components/moveCenter";
-import { hideMarker, showMarker } from "../components/Marker";
+import {showMarker } from "../components/Marker";
 
 
 

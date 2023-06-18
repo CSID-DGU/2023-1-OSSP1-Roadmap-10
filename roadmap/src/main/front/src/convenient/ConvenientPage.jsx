@@ -155,7 +155,6 @@ function ConvenientPage() {
 
                     window.kakao.maps.event.addListener(newMarker, 'click', function(){
                         closeOverlay();
-                        console.log("버튼 눌림")
                     });
 
                     newMarker.setMap(map);

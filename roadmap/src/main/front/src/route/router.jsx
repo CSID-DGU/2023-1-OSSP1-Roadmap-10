@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import MainPage from "../MainPage/Mainpage.jsx";
 import BuildingInfo from "../Buildinginfo/BuildingInfo.jsx";
 import Map from "../Map/Map.jsx";
