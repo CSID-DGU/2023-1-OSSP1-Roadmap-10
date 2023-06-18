@@ -226,13 +226,15 @@ select option [value = ""][disabled]{
     height: 100px;
     margin : 10px;
     right : 0.5px;
+    white-space : normal;
+    overflow : auto;
 }
 .overlay-wrapper .overlay-text-wrapper p{
     padding : 2px;
 }
 .overlay-wrapper-onlyimg{
     position: relative;
-    transform: translate(36%,-75%);
+    transform: translate(55%,-75%);
     width: 160px;
     height: 160px;
     margin-left: -144px;
@@ -312,17 +314,12 @@ select option [value = ""][disabled]{
     }
     .overlay-wrapper .overlay-text-wrapper{
         width : 50%;
-        height: 50%;
     }
     .overlay-wrapper .overlay-text-wrapper p{
         font-size: 50%;
     }
-    .overlay-wrapper .overlay-img-wrapper{
-        width: 50%;
-        height: 50%;
-    }
     .overlay-wrapper .overlay-img-wrapper img{
-        width: 75%;
+        width: 80%;
         height: 50%;
     }
 }

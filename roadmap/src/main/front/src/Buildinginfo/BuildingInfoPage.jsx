@@ -1,10 +1,6 @@
 /*global kakao*/
-import React, { useEffect, useState, useRef } from "react";
-import axios from "axios"
+import React, { useEffect, useState } from "react";
 import LocList from "../components/buildinginfo";
-import drawLine from "../components/Line";
-import moveCenter from "../components/moveCenter";
-import { hideMarker, showMarker } from "../components/Marker";
 
 
 
@@ -17,17 +13,10 @@ function BuildingInfoPage() {
 
     const [map, settingMap] = useState(null);
     const [render1, setRender1] = useState(true);
-    const [markers, setMarkers] = useState([])
-    const [test, Test] = useState(true)
-    const [iW, addIW] = useState([])
+    const [markers, setMarkers] = useState()
+    const [iW, addIW] = useState()
 
 
-    const addNewMarker = (newMarker) => {
-        setMarkers((prevMarker) => [...prevMarker, newMarker])
-    }
-    const addNewIW = (newInfoWindow) => {
-        addIW((previW) => [...previW, newInfoWindow])
-    }
     const getImgAdd = (imgName) => {
         try {
             const imgAdd = require(`../images/${imgName}`);
@@ -85,8 +74,6 @@ function BuildingInfoPage() {
             const markerArray = []
             const iWArray = []
 
-
-
             loc.map((building) => {
                 const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
                 const newMarker = new window.kakao.maps.Marker({
@@ -97,50 +84,15 @@ function BuildingInfoPage() {
 
                 newMarker.setMap(map);
 
-                addNewMarker(newMarker);
                 markerArray.push(newMarker)
 
                 const newInfoWindow = new window.kakao.maps.CustomOverlay({
-                    clickable: false,
+                    clickable: true,
                     map: map,
                     position: newMarker.getPosition(),
                     removable: true,
                     zIndex: 5
                 })
-
-
-
-
-                function explainfacilities(){
-                    const facilities  = []
-                    let forIndex = 0;
-                    building.facilities.forEach((index)=>{
-                        if(index === 1){
-                            if(forIndex === 0){
-                                facilities.push("카페")
-                            }else if(forIndex === 1){
-                                facilities.push("식당")
-                            }else if(forIndex === 2){
-                                facilities.push("편의점")
-                            }else if(forIndex === 3){
-                                facilities.push("ATM")
-                            }else if(forIndex === 4){
-                                facilities.push("열람실")
-                            }else if(forIndex === 5){
-                                facilities.push("제세동기")
-                            }else if(forIndex === 6){
-                                facilities.push("복사기")
-                            }else if(forIndex === 7){
-                                facilities.push("유인복사기")
-                            }else if(forIndex === 8){
-                                facilities.push("증명서자동발급기")
-                            }
-                        }
-                        forIndex ++;
-                    })
-
-                    return facilities
-                }
 
                 const imageSrc = getImgAdd(building.image)
 
@@ -178,13 +130,9 @@ function BuildingInfoPage() {
                 const explainParagraph = document.createElement('p');
                 explainParagraph.innerHTML = building.explain.replace(/\n/g, "<br>");
                 const locationParagraph = document.createElement('p');
-                const closeButton = document.createElement('button');
-                closeButton.id = 'closeButton';
-                closeButton.textContent = 'HOME';
                 textWrapperDiv.appendChild(facilitiesParagraph);
                 textWrapperDiv.appendChild(explainParagraph);
                 textWrapperDiv.appendChild(locationParagraph);
-                textWrapperDiv.appendChild(closeButton);
                 contentWrapperDiv.appendChild(textWrapperDiv);
 
                 wrapperDiv.appendChild(contentWrapperDiv);
@@ -202,31 +150,17 @@ function BuildingInfoPage() {
 
                 newInfoWindow.setContent(wrapperDiv)
 
-                newInfoWindow.setMap(map)
+                newInfoWindow.setMap(null)
 
                 window.kakao.maps.event.addListener(newMarker, 'click', closeOverlay)
 
-                addNewIW(newInfoWindow);
+
                 iWArray.push(newInfoWindow)
             })
+            addIW(iWArray);
+            setMarkers(markerArray);
         }
     }, [map]);
-
-    let i = 0;
-
-    useEffect(() => {
-        if (map) {
-            iW.map(info => {
-                info.setMap(null)
-                
-                console.log(i);
-                
-                i++;
-            })
-        }
-    }, [iW])
-
-
 
 
     return (

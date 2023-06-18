@@ -314,17 +314,12 @@ select option [value = ""][disabled]{
     }
     .overlay-wrapper .overlay-text-wrapper{
         width : 50%;
-        height: 50%;
     }
     .overlay-wrapper .overlay-text-wrapper p{
         font-size: 50%;
     }
-    .overlay-wrapper .overlay-img-wrapper{
-        width: 50%;
-        height: 50%;
-    }
     .overlay-wrapper .overlay-img-wrapper img{
-        width: 75%;
+        width: 80%;
         height: 50%;
     }
 }
