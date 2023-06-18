@@ -97,10 +97,39 @@
 
 
 
+PC버전 사진
 
 ![image](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/0a38cc6b-2d69-42ca-a6f5-b49e70899d1d)
 메인 페이지 사진
 
+
+![image](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/0f362792-744d-40f5-8a7c-5ff91910e5f4)
+건물정보 페이지 사진
+
+
+![image](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/a36974d2-9e61-4aea-8e06-2065c819b646)
+편의시설 페이지 사진
+
+
+![image](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/a119a7ec-03c5-40ae-9873-ca0ebf3f7d31)
+경로 탐색 페이지 사진
+
+
+
+Mobile버전 사진
+
+
+![KakaoTalk_20230619_012724613](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/a66d4878-4102-4af9-a150-33c19718bac1)
+메인 페이지 사진
+
+
+![KakaoTalk_20230619_012724613_01](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/feb6c81b-8a4f-4c4d-972d-a93bceca2d2d)
+경로 탐색 페이지 사진
+
+
+
+![KakaoTalk_20230619_012724613_02](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/554f01ab-1c43-4461-b377-92c6c5d80f1e)
+편의시설 페이지 
 
 
 
