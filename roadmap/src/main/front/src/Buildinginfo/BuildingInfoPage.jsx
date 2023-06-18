@@ -124,17 +124,25 @@ function BuildingInfoPage() {
                 imgWrapperDiv.appendChild(imgElement);
                 contentWrapperDiv.appendChild(imgWrapperDiv);
 
+                const buttonClicked=(id) => {
+                    localStorage.setItem('myData', id);
+                    window.location.href = '/map';
+                }
+
                 const textWrapperDiv = document.createElement('div');
                 textWrapperDiv.classList.add('overlay-text-wrapper');
                 const facilitiesParagraph = document.createElement('p');
                 const explainParagraph = document.createElement('p');
                 explainParagraph.innerHTML = building.explain.replace(/\n/g, "<br>");
                 const locationParagraph = document.createElement('p');
+                const button = document.createElement('button');
+                button.textContent = '경로 탐색';
+                button.addEventListener('click', () => buttonClicked(building.code));
                 textWrapperDiv.appendChild(facilitiesParagraph);
                 textWrapperDiv.appendChild(explainParagraph);
                 textWrapperDiv.appendChild(locationParagraph);
                 contentWrapperDiv.appendChild(textWrapperDiv);
-
+                textWrapperDiv.appendChild(button);
                 wrapperDiv.appendChild(contentWrapperDiv);
 
                 function closeOverlay() {
