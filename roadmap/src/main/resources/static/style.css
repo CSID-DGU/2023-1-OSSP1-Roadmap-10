@@ -1,0 +1,356 @@
+@font-face {
+    font-family: 'neon';
+    src: url("https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css") format('truetype');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'neon';
+}
+
+body {
+    height: 100vh;
+    background-color: black;
+    background-image: url("university.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+li {
+    list-style: none;
+}
+img{
+    width: 20vw;
+    height: 6vw;
+}
+.navbar img{
+    transform: translate(0,10%);
+}
+a {
+    font-family: 'neon';
+    text-decoration: none;
+    color: rgb(131,120,111);
+    font-size: 1rem;
+}
+
+a:hover {
+    color: coral;
+}
+
+p{
+    font-family: 'neon';
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+/* Header */
+header {
+    position: relative;
+    padding: 0 2rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo p {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+}
+.navbar .toggle_btn {
+    color: aliceblue;
+    padding: 0.4em;
+    font-size: 2.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.title {
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+section#hero {
+    font-family: 'neon';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+#hero h1 {
+    font-family: 'neon';
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.map-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.map-style {
+    align-content: center;
+    background-color: black;
+    width: 80vw;
+    height: 35vw;
+}
+
+.box-style {
+    font-family: 'neon';
+    margin : 1vh;
+    background-color: rgb(137, 124, 117);
+    color:#fff;
+    padding : 1rem 2rem;
+    border: none;
+    outline:none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+select option [value = ""][disabled]{
+    display : none;
+}
+.controller-wrapper{
+
+}
+.button-style {
+    margin : 1vh;
+    background-color: rgb(137, 124, 117);
+    color:#fff;
+    border: none;
+    padding : 1rem 2rem;
+    outline:none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+/*오버레이 스타일*/
+.overlay-wrapper{
+    position: relative;
+    transform: translate(20%,-75%);
+    width: 360px;
+    height: 162px;
+    margin-left: -144px;
+    text-align: left;
+    font-size: 12px;
+    overflow: hidden;
+    font-family: 'neon';
+    border-radius: 10px;
+    background-color: #fff;
+    z-index: 2;
+}
+.overlay-wrapper p{
+    font-family: 'neon';
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 0.6rem;
+}
+.overlay-wrapper *{
+    padding:0;
+    margin:0;
+}
+
+.overlay-wrapper .overlay-bar{
+    display:flex;
+    padding:10px;
+    background-color: cadetblue;
+    align-items: center;
+    justify-content: space-between;
+    height : 2rem;
+}
+.xmark{
+    color:#fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.overlay-wrapper .overlay-bar h{
+    margin: 5px;
+    font-size: 1.2rem;
+}
+.overlay-wrapper .overlay-content-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.overlay-wrapper .overlay-img-wrapper{
+    top:10px;
+    left: 5px;
+    width: 140px;
+    height: 79px;
+    border:1px;
+    float: left;
+    flex:auto;
+}
+.overlay-wrapper .overlay-img-wrapper img{
+    width: 140px;
+    height: 100px;
+    margin: 10px;
+}
+
+.overlay-wrapper .overlay-text-wrapper{
+    flex : auto;
+    width: 160px;
+    height: 100px;
+    margin : 10px;
+    right : 0.5px;
+    white-space : normal;
+    overflow : auto;
+}
+.overlay-wrapper .overlay-text-wrapper p{
+    padding : 2px;
+}
+.overlay-wrapper-onlyimg{
+    position: relative;
+    transform: translate(55%,-75%);
+    width: 160px;
+    height: 160px;
+    margin-left: -144px;
+    text-align: center;
+    font-size: 12px;
+    overflow: hidden;
+    font-family: 'neon';
+    border-radius: 10px;
+    background-color: #fff;
+    z-index: 2;
+}
+.overlay-wrapper-onlyimg .overlay-bar{
+    display:flex;
+    padding:10px;
+    background-color: cadetblue;
+    align-items: center;
+    justify-content: space-between;
+    height : 2rem;
+    text-align: right;
+    flex-direction: row-reverse;
+}
+.overlay-wrapper-onlyimg .overlay-img-wrapper{
+    top:10px;
+    left: 5px;
+    width: 140px;
+    height: 79px;
+    border:1px;
+    float: left;
+    flex:auto;
+}
+.overlay-wrapper-onlyimg .overlay-img-wrapper img{
+    width: 140px;
+    height: 100px;
+    margin: 10px;
+}
+
+/* 반응형 디자인 */
+@media(max-width: 992px) {
+
+    .navbar .links,
+    .title {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+    .dropdown_menu {
+        display: block;
+    }
+    .box-style{
+        padding: 1em 2em;
+        font-size: .6em;
+    }
+    .button-style{
+        padding: 1em 2em;
+        font-size: .6em;
+    }
+    .map-wrapper{
+        width: 100vw;
+    }
+    .map-style{
+        width:95vw;
+        height: 40vh;
+    }
+    img{
+        width: 50vw;
+        height: 15vw;
+    }
+    header{
+        padding: 0;
+    }
+    .overlay-wrapper{
+        width : 250px;
+        height : 130px;
+    }
+    .overlay-wrapper .overlay-text-wrapper{
+        width : 50%;
+        height: 80px;
+        margin: 0;
+    }
+    .overlay-wrapper .overlay-text-wrapper p{
+        font-size: 50%;
+    }
+    .overlay-wrapper .overlay-img-wrapper img{
+        width: 80%;
+        height: 50%;
+    }
+}
+
+/*모바일 메뉴*/
+.dropdown_menu {
+    z-index: 999;
+    position: absolute;
+    right: 1.3rem;
+    top: 60px;
+    height: 0;
+    width: 160px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu li {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dropdown_menu li a{
+    font-size:.7em;
+}
+
+.dropdown_menu.open {
+    height: 100px;
+}

@@ -1,10 +1,7 @@
 /*global kakao*/
-import React, { useEffect, useState,useRef } from "react";
-import LocList from "../data/buildinginfo";
-import drawLine from "../components/Line";
-import moveCenter from "../components/moveCenter";
+import React, { useEffect, useState } from "react";
+import LocList from "../components/buildinginfo";
 import { hideMarker, showMarker } from "../components/Marker";
-import selectBuilding from "../components/Dropdown"
 
 
 const { kakao } = window;
@@ -18,41 +15,27 @@ function ConvenientPage() {
     const [iW, addIW] = useState([])
     const [path,setPath] = useState(null)
     const [stateMarker,setStateMarker] = useState(true)
-    const [buttonText, setButtonText] = useState("감추기")
-    const changeStateMarker = () =>{
-        if(stateMarker){
-            setStateMarker(false)
-            setButtonText("띄우기")
-        }else{
-            setStateMarker(true)
-            setButtonText("감추기")
-        }
-    }
-    const [selectStart, setSelectStart] = useState(null)
-    const [selectFinish, setSelectFinish] = useState(null)
-    const [bothNode, setNode] = useState([null,null])//출발점과 도착점
+    const [convNum, setSelectedValue] = useState('')
+
     const addNewMarker = (newMarker) => {
         setMarkers((prevMarker) => [...prevMarker, newMarker])
     }
     const cngMarker = (newMarker) => {
         setMarkers(newMarker)
     }
-    const addNewIW = (newInfoWindow) => {
-        addIW((previW) => [...previW, newInfoWindow])
-    }
-    const addStartNode = (newNode) => {
-        setSelectStart(newNode)
-        setNode([newNode,bothNode[1]])
-    }
-    const addFinishNode = (newNode) => {
-        setSelectFinish(newNode)
-        setNode([bothNode[0],newNode])
-    }
+    const getImgAdd = (imgName) => {
+        try {
+            const imgAdd = require(`../images/convenient/${imgName}`);
+            return imgAdd;
+        } catch (error) {
+            return null;
+        }
+    };
+
     useEffect(() => {
         const markerArray = []
-        const iWArray = []
 
-        
+
         const script = document.createElement("script");
         script.async = true;
         script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=4df16387a395762838f3f668c6731805&autoload=false';
@@ -63,7 +46,7 @@ function ConvenientPage() {
                 if(render1){
                     const container = document.getElementById('map');
                     const options = {
-                        center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
+                        center: new window.kakao.maps.LatLng(37.55803420483414, 127.00088278271602),
                         level: 3
                     };
                     const newMap = new window.kakao.maps.Map(container, options)
@@ -78,30 +61,14 @@ function ConvenientPage() {
 
 
                         newMarker.setMap(newMap);
-
-                        const contents = document.createElement('div');
-
-                        const text = document.createElement('text')
-                        contents.textContent = (building.explain)
-                        text.appendChild(contents)
-
-                        const newInfoWindow = new window.kakao.maps.InfoWindow({
-                            content: text,
-                            removable: true
-                        })
-
-                        window.kakao.maps.event.addListener(newMarker, 'click', function () {
-                            newInfoWindow.open(newMap, newMarker)
-                        })
+                        newMarker.setMap(null);
 
                         addNewMarker(newMarker);
-                        addNewIW(newInfoWindow);
                         markerArray.push(newMarker)
-                        iWArray.push(newInfoWindow)
                     })
 
                     setRender1(false)
-                    
+
                 }
             })
         };
@@ -110,77 +77,141 @@ function ConvenientPage() {
             document.head.removeChild(script);
         };
     }, []);
-    const deleteLine = () => {
-        if (map) {
-            if(path){
-                console.log("정상 실행")
-                path.setMap(null)
-            }
-            setPath()
-        }
-    }
-    const startNode = (e) =>{
-        addStartNode(e.target.value)
-    }
-    const finishNode = (e) =>{
-        addFinishNode(e.target.value)
-    }
-    const makeLine = () => {
-        if (map) {
-            deleteLine()
-            try {
-                setPath(drawLine(map, bothNode))
-            } catch {
-                console.log("drawline's error")
-            }
-        }
-    }
-    const center = () => {
-        if (map) {
-            moveCenter(map)
-        }
-    }
+
+
+
+
     useEffect(() => {
-        if(map && markers){
-            try{
-                if(stateMarker){
-                    cngMarker(showMarker(map, markers))
-                    path.setMap(map)
-                }else{
-                    cngMarker(hideMarker(map, markers, iW))
-                    path.setMap(null)
+        if (map && markers) {
+            try {
+                if (stateMarker) {
+                    cngMarker(showMarker(map, markers));
+                    path.setMap(map);
+                } else {
+                    cngMarker(hideMarker(map, markers, iW));
+                    path.setMap(null);
                 }
-            }catch{
-                console.log("error")
+            } catch {
+                console.log("error");
             }
         }
 
-    },[stateMarker])
+        // Clear the previous markers
+        markers.forEach(marker => marker.setMap(null));
+        iW.forEach(iw => iw.setMap(null));
+
+        if (map && convNum !== '') {
+            const markerArray = [];
+            const IwArray = [];
+
+
+            loc.forEach(building => {
+                if (building.facilities[convNum] === 1) {
+                    const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
+                    const newMarker = new window.kakao.maps.Marker({
+                        position: markerPosition,
+                        clickable: true
+                    });
+
+                    const newInfo = new window.kakao.maps.CustomOverlay({
+                        clickable: false,
+                        map: map,
+                        position: newMarker.getPosition(),
+                        removable: true,
+                        zIndex: 5
+                    })
+                    const convenientImage = building.code + "_" + convNum + ".png"
+
+                    const imageSrc = getImgAdd(convenientImage)
+                    console.log(convenientImage)
+
+                    const wrapperDiv = document.createElement('div');
+                    wrapperDiv.classList.add('overlay-wrapper-onlyimg');
+
+                    const barDiv = document.createElement('div');
+                    barDiv.classList.add('overlay-bar');
+
+                    const xmarkDiv = document.createElement('div');
+                    xmarkDiv.classList.add('xmark');
+                    const iElement = document.createElement('i');
+                    iElement.classList.add('fa-solid', 'fa-xmark');
+                    iElement.addEventListener('click', closeOverlay);
+                    xmarkDiv.appendChild(iElement);
+
+                    const imgWrapperDiv = document.createElement('div');
+                    imgWrapperDiv.classList.add('overlay-img-wrapper');
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imageSrc;
+                    imgElement.alt = 'Building Image';
+                    imgWrapperDiv.appendChild(imgElement);
+
+                    barDiv.appendChild(xmarkDiv);
+                    wrapperDiv.appendChild(barDiv);
+                    wrapperDiv.appendChild(imgWrapperDiv);
+
+                    newInfo.setContent(wrapperDiv)
+
+                    newInfo.setMap(null);
+                    IwArray.push(newInfo);
+
+                    function closeOverlay() {
+                        if (map) {
+                            if (newInfo.getMap() === null) {
+                                newInfo.setMap(map, newMarker)
+                            }
+                            else {
+                                newInfo.setMap(null)
+                            }
+                        }
+                    }
+
+                    window.kakao.maps.event.addListener(newMarker, 'click', function(){
+                        closeOverlay();
+                    });
+
+                    newMarker.setMap(map);
+                    markerArray.push(newMarker);
+                }
+            });
+
+            addIW(IwArray);
+            setMarkers(markerArray);
+        }
+    }, [stateMarker, convNum]);
+
+
+
+
+
+    const findConv = (e) =>{
+        setSelectedValue(e.target.value);
+    }
+
 
 
     return (
         <div className="map-wrapper">
             <div className="controller-wrapper">
-                <select className="box-style" onChange={startNode}>
-                    <option selected disabled>출발지 선택</option>
-                    {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
+                <select className="box-style" onChange={findConv}>
+                    <option selected disabled>편의시설 선택</option>
+                    <option value="0">카페</option>
+                    <option value="1">식당</option>
+                    <option value="2">편의점</option>
+                    <option value="3">ATM</option>
+                    <option value="4">열람실</option>
+                    <option value="5">제세동기</option>
+                    <option value="6">복사기</option>
+                    <option value="7">유인복사실</option>
+                    <option value="8">증명서자동발급기</option>
                 </select>
-                <select className="box-style" onChange={finishNode}>
-                    <option selected disabled>도착지 선택</option>
-                    {loc.map((building) => <option key={building.code} value={building.id}>{building.id}</option>)}
-                </select>
-                <button className="button-style" onClick={makeLine}>경로 탐색</button>
-                <button className="button-style" onClick={changeStateMarker}>{buttonText}</button>
-                <button className="button-style" onClick={center}>중심으로 이동</button>
             </div>
 
             <span>
                 <div id="map" className="map-style"></div>
             </span>
-            <p> 출발지 : {selectStart} / 도착지 : {selectFinish}</p>
         </div>
     )
-    
+
 }
 
 export default ConvenientPage;

@@ -1,5 +1,5 @@
 import NavBar from "../components/Navbar.jsx";
-import ConvenientPage from "../convenient/ConvenientPage.jsx";
+import ConvenientPage from "./ConvenientPage.jsx";
 
 
 function Convenient() {

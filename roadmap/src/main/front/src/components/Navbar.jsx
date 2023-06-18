@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Logo from "./ROADMAP_4.png"
+import Logo from "./ROADMAP_6.png"
 const NavBar = () => {
 
   const toggleMenu = () => {
@@ -16,10 +15,14 @@ const NavBar = () => {
   return (
     <header>
       <div class="navbar">
-        <div class="logo"><img src ={Logo}></img></div>
+        <div class="logo">
+          <a href= "./">
+            <img src={Logo}></img>
+          </a>
+        </div>
 
         <div class="links">
-          <li><a href="./mainPage">HOME</a></li>
+          <li><a href="./buildinginfo">INFO</a></li>
           <li><a href="./convenient">CONVENIENT</a></li>
           <li><a href="./map">PATH</a></li>
         </div>
@@ -29,7 +32,7 @@ const NavBar = () => {
       </div>
       <div>
         <div class="dropdown_menu">
-          <li><a href="./mainPage">HOME</a></li>
+          <li><a href="./buildinginfo">INFO</a></li>
           <li><a href="./convenient">CONVENIENT</a></li>
           <li><a href="./map">PATH</a></li>
         </div>

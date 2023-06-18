@@ -12,7 +12,7 @@
 body {
     height: 100vh;
     background-color: black;
-    background-image: url("1920px-DONGGUK_UNIVERSITY_ED8C94ECA095EB8F84.png");
+    background-image: url("university.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -22,7 +22,10 @@ li {
 }
 img{
     width: 20vw;
-    height: 20vw;
+    height: 6vw;
+}
+.navbar img{
+    transform: translate(0,10%);
 }
 a {
     font-family: 'neon';
@@ -89,7 +92,7 @@ section#hero {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -150%);
-    height: calc(100vh -60px);
+    height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,8 +111,8 @@ section#hero {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    height: calc(100vh -60px);
+    transform: translate(-50%, -45%);
+    height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,7 +123,7 @@ section#hero {
 .map-style {
     align-content: center;
     background-color: black;
-    width: 75vw;
+    width: 80vw;
     height: 35vw;
 }
 
@@ -137,6 +140,9 @@ section#hero {
     font-weight: bold;
     cursor: pointer;
 }
+select option [value = ""][disabled]{
+    display : none;
+}
 .controller-wrapper{
 
 }
@@ -151,6 +157,118 @@ section#hero {
     font-size: 0.8rem;
     font-weight: bold;
     cursor: pointer;
+}
+/*오버레이 스타일*/
+.overlay-wrapper{
+    position: relative;
+    transform: translate(20%,-75%);
+    width: 360px;
+    height: 162px;
+    margin-left: -144px;
+    text-align: left;
+    font-size: 12px;
+    overflow: hidden;
+    font-family: 'neon';
+    border-radius: 10px;
+    background-color: #fff;
+    z-index: 2;
+}
+.overlay-wrapper p{
+    font-family: 'neon';
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 0.6rem;
+}
+.overlay-wrapper *{
+    padding:0;
+    margin:0;
+}
+
+.overlay-wrapper .overlay-bar{
+    display:flex;
+    padding:10px;
+    background-color: cadetblue;
+    align-items: center;
+    justify-content: space-between;
+    height : 2rem;
+}
+.xmark{
+    color:#fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.overlay-wrapper .overlay-bar h{
+    margin: 5px;
+    font-size: 1.2rem;
+}
+.overlay-wrapper .overlay-content-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.overlay-wrapper .overlay-img-wrapper{
+    top:10px;
+    left: 5px;
+    width: 140px;
+    height: 79px;
+    border:1px;
+    float: left;
+    flex:auto;
+}
+.overlay-wrapper .overlay-img-wrapper img{
+    width: 140px;
+    height: 100px;
+    margin: 10px;
+}
+
+.overlay-wrapper .overlay-text-wrapper{
+    flex : auto;
+    width: 160px;
+    height: 100px;
+    margin : 10px;
+    right : 0.5px;
+    white-space : normal;
+    overflow : auto;
+}
+.overlay-wrapper .overlay-text-wrapper p{
+    padding : 2px;
+}
+.overlay-wrapper-onlyimg{
+    position: relative;
+    transform: translate(55%,-75%);
+    width: 160px;
+    height: 160px;
+    margin-left: -144px;
+    text-align: center;
+    font-size: 12px;
+    overflow: hidden;
+    font-family: 'neon';
+    border-radius: 10px;
+    background-color: #fff;
+    z-index: 2;
+}
+.overlay-wrapper-onlyimg .overlay-bar{
+    display:flex;
+    padding:10px;
+    background-color: cadetblue;
+    align-items: center;
+    justify-content: space-between;
+    height : 2rem;
+    text-align: right;
+    flex-direction: row-reverse;
+}
+.overlay-wrapper-onlyimg .overlay-img-wrapper{
+    top:10px;
+    left: 5px;
+    width: 140px;
+    height: 79px;
+    border:1px;
+    float: left;
+    flex:auto;
+}
+.overlay-wrapper-onlyimg .overlay-img-wrapper img{
+    width: 140px;
+    height: 100px;
+    margin: 10px;
 }
 
 /* 반응형 디자인 */
@@ -184,11 +302,27 @@ section#hero {
         height: 40vh;
     }
     img{
-        width: 40vw;
-        height: 40vw;
+        width: 50vw;
+        height: 15vw;
     }
     header{
         padding: 0;
+    }
+    .overlay-wrapper{
+        width : 250px;
+        height : 130px;
+    }
+    .overlay-wrapper .overlay-text-wrapper{
+        width : 50%;
+        height: 80px;
+        margin: 0;
+    }
+    .overlay-wrapper .overlay-text-wrapper p{
+        font-size: 50%;
+    }
+    .overlay-wrapper .overlay-img-wrapper img{
+        width: 80%;
+        height: 75px;
     }
 }
 
@@ -220,5 +354,3 @@ section#hero {
 .dropdown_menu.open {
     height: 100px;
 }
-
-
