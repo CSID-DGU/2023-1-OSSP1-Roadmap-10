@@ -1,10 +1,9 @@
 /*global kakao*/
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios"
 import LocList from "../components/buildinginfo";
 import drawLine from "../components/Line";
-import moveCenter from "../components/moveCenter";
-import { hideMarker, showMarker } from "../components/Marker";
+import {showMarker } from "../components/Marker";
 
 
 
@@ -45,7 +44,7 @@ function KakaoMap() {
                 window.kakao.maps.load(() => {
                     const container = document.getElementById("map");
                     const options = {
-                        center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
+                        center: new window.kakao.maps.LatLng(37.55803420483414, 127.00088278271602),
                         level: 3
                     };
 

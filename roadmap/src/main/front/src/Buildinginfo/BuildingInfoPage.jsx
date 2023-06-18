@@ -13,8 +13,6 @@ function BuildingInfoPage() {
 
     const [map, settingMap] = useState(null);
     const [render1, setRender1] = useState(true);
-    const [markers, setMarkers] = useState()
-    const [iW, addIW] = useState()
 
 
     const getImgAdd = (imgName) => {
@@ -39,7 +37,7 @@ function BuildingInfoPage() {
                 if (render1) {
                     const container = document.getElementById('map');
                     const options = {
-                        center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
+                        center: new window.kakao.maps.LatLng(37.55803420483414, 127.00088278271602),
                         level: 3
                     };
 
@@ -71,9 +69,6 @@ function BuildingInfoPage() {
 
     useEffect(() => {
         if (map) {
-            const markerArray = []
-            const iWArray = []
-
             loc.map((building) => {
                 const markerPosition = new window.kakao.maps.LatLng(building.Lat, building.Lng);
                 const newMarker = new window.kakao.maps.Marker({
@@ -83,8 +78,6 @@ function BuildingInfoPage() {
 
 
                 newMarker.setMap(map);
-
-                markerArray.push(newMarker)
 
                 const newInfoWindow = new window.kakao.maps.CustomOverlay({
                     clickable: true,
@@ -161,12 +154,7 @@ function BuildingInfoPage() {
                 newInfoWindow.setMap(null)
 
                 window.kakao.maps.event.addListener(newMarker, 'click', closeOverlay)
-
-
-                iWArray.push(newInfoWindow)
             })
-            addIW(iWArray);
-            setMarkers(markerArray);
         }
     }, [map]);
 
@@ -178,7 +166,6 @@ function BuildingInfoPage() {
             </span>
         </div>
     )
-
 }
 
 export default BuildingInfoPage;

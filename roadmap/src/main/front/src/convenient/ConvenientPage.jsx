@@ -1,10 +1,7 @@
 /*global kakao*/
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState } from "react";
 import LocList from "../components/buildinginfo";
-import drawLine from "../components/Line";
-import moveCenter from "../components/moveCenter";
 import { hideMarker, showMarker } from "../components/Marker";
-import axios from "axios";
 
 
 const { kakao } = window;
@@ -18,7 +15,6 @@ function ConvenientPage() {
     const [iW, addIW] = useState([])
     const [path,setPath] = useState(null)
     const [stateMarker,setStateMarker] = useState(true)
-    const [buttonText, setButtonText] = useState("감추기")
     const [convNum, setSelectedValue] = useState('')
 
     const addNewMarker = (newMarker) => {
@@ -27,10 +23,17 @@ function ConvenientPage() {
     const cngMarker = (newMarker) => {
         setMarkers(newMarker)
     }
+    const getImgAdd = (imgName) => {
+        try {
+            const imgAdd = require(`../images/convenient/${imgName}`);
+            return imgAdd;
+        } catch (error) {
+            return null;
+        }
+    };
 
     useEffect(() => {
         const markerArray = []
-        const iWArray = []
 
 
         const script = document.createElement("script");
@@ -43,7 +46,7 @@ function ConvenientPage() {
                 if(render1){
                     const container = document.getElementById('map');
                     const options = {
-                        center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
+                        center: new window.kakao.maps.LatLng(37.55803420483414, 127.00088278271602),
                         level: 3
                     };
                     const newMap = new window.kakao.maps.Map(container, options)
@@ -117,6 +120,10 @@ function ConvenientPage() {
                         removable: true,
                         zIndex: 5
                     })
+                    const convenientImage = building.code + "_" + convNum + ".png"
+
+                    const imageSrc = getImgAdd(convenientImage)
+                    console.log(convenientImage)
 
                     const wrapperDiv = document.createElement('div');
                     wrapperDiv.classList.add('overlay-wrapper-onlyimg');
@@ -134,7 +141,7 @@ function ConvenientPage() {
                     const imgWrapperDiv = document.createElement('div');
                     imgWrapperDiv.classList.add('overlay-img-wrapper');
                     const imgElement = document.createElement('img');
-                    imgElement.src = building.image;
+                    imgElement.src = imageSrc;
                     imgElement.alt = 'Building Image';
                     imgWrapperDiv.appendChild(imgElement);
 
@@ -144,7 +151,7 @@ function ConvenientPage() {
 
                     newInfo.setContent(wrapperDiv)
 
-                    newInfo.setMap(map);
+                    newInfo.setMap(null);
                     IwArray.push(newInfo);
 
                     function closeOverlay() {
@@ -160,7 +167,6 @@ function ConvenientPage() {
 
                     window.kakao.maps.event.addListener(newMarker, 'click', function(){
                         closeOverlay();
-                        console.log("버튼 눌림")
                     });
 
                     newMarker.setMap(map);
@@ -180,8 +186,6 @@ function ConvenientPage() {
     const findConv = (e) =>{
         setSelectedValue(e.target.value);
     }
-
-    const markerArray = [];
 
 
 
