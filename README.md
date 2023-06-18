@@ -142,7 +142,7 @@
 
 
 
-##Mobile버전 사진
+## Mobile버전 사진
 
 
 ![KakaoTalk_20230619_012724613](https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/129247495/a66d4878-4102-4af9-a150-33c19718bac1)
