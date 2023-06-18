@@ -8,6 +8,7 @@ import { hideMarker, showMarker } from "../components/Marker";
 
 
 
+
 const { kakao } = window;
 const loc = LocList();
 
@@ -28,6 +29,17 @@ function BuildingInfoPage() {
     const addNewIW = (newInfoWindow) => {
         addIW((previW) => [...previW, newInfoWindow])
     }
+
+    const handleHomeButtonClick = (id) => {
+        // Get the data you want to pass
+        const data = id;
+
+        // Store the data in local storage
+        localStorage.setItem('myData', data);
+
+        window.location.href = '/map'
+    };
+
     const getImgAdd = (imgName) => {
         try {
             const imgAdd = require(`../images/${imgName}`);
@@ -180,7 +192,8 @@ function BuildingInfoPage() {
                 const locationParagraph = document.createElement('p');
                 const closeButton = document.createElement('button');
                 closeButton.id = 'closeButton';
-                closeButton.textContent = 'HOME';
+                closeButton.textContent = '경로찾기';
+                closeButton.addEventListener('click', () => handleHomeButtonClick(building.code));
                 textWrapperDiv.appendChild(facilitiesParagraph);
                 textWrapperDiv.appendChild(explainParagraph);
                 textWrapperDiv.appendChild(locationParagraph);

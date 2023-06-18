@@ -13,20 +13,20 @@ const loc = LocList();
 
 function KakaoMap() {
 
+    const storedData = localStorage.getItem('myData');
     const [map, settingMap] = useState(null);
     const [markers, setMarkers] = useState([])
     const [iW, addIW] = useState([])
     const [path, setPath] = useState(null)
     const [stateMarker, setStateMarker] = useState(true)
     const [start, SetStart] = useState()
-    const [finish, SetFinish] = useState()
+    const [finish, SetFinish] = useState(storedData)
     const [shortestPath, setShortestPath] = useState([])
     const [dLatLng, setDLatLng] = useState([])
     const [selectStart, setSelectStart] = useState(null)
     const [selectFinish, setSelectFinish] = useState(null)
     const [searchClicked, setSearchClicked] = useState(false)
     const [image,setImage] = useState([])
-
 
 
 
@@ -48,6 +48,8 @@ function KakaoMap() {
                         center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
                         level: 3
                     };
+
+                    console.log(storedData);
 
                     const newMap = new window.kakao.maps.Map(container, options);
                     settingMap(newMap);
@@ -286,16 +288,24 @@ function KakaoMap() {
         <div className="map-wrapper">
             <div className="controller-wrapper">
                 <select className="box-style" onChange={(e)=>{
-                    SetStart(e.target.value);
+                        SetStart(e.target.value);
                 }}>
                     <option selected disabled>출발지 선택</option>
                     {loc.map((building) => <option key={building.code} value={building.code}>{building.id}</option>)}
                 </select>
                 <select className="box-style" onChange={(e) =>{
-                    SetFinish(e.target.value);
+                    const selectedValue = e.target.value;
+                    SetFinish(selectedValue);
                 }}>
                     <option selected disabled>도착지 선택</option>
-                    {loc.map((building) => <option key={building.code} value={building.code}>{building.id}</option>)}
+                    {loc.map((building) => (
+                        <option
+                            key={building.code}
+                            value={building.code}
+                            selected={building.code === storedData}
+                        >
+                            {building.id}
+                        </option>))}
                 </select>
                 <button className="button-style" onClick={
                     ()=>{
