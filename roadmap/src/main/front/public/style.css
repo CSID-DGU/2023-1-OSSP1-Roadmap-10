@@ -226,6 +226,8 @@ select option [value = ""][disabled]{
     height: 100px;
     margin : 10px;
     right : 0.5px;
+    white-space : normal;
+    overflow : auto;
 }
 .overlay-wrapper .overlay-text-wrapper p{
     padding : 2px;
