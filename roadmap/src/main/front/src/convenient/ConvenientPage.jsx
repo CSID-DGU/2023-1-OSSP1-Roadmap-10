@@ -23,6 +23,14 @@ function ConvenientPage() {
     const cngMarker = (newMarker) => {
         setMarkers(newMarker)
     }
+    const getImgAdd = (imgName) => {
+        try {
+            const imgAdd = require(`../images/${imgName}`);
+            return imgAdd;
+        } catch (error) {
+            return null;
+        }
+    };
 
     useEffect(() => {
         const markerArray = []
@@ -113,6 +121,8 @@ function ConvenientPage() {
                         zIndex: 5
                     })
 
+                    const imageSrc = getImgAdd(building.image)
+
                     const wrapperDiv = document.createElement('div');
                     wrapperDiv.classList.add('overlay-wrapper-onlyimg');
 
@@ -129,7 +139,7 @@ function ConvenientPage() {
                     const imgWrapperDiv = document.createElement('div');
                     imgWrapperDiv.classList.add('overlay-img-wrapper');
                     const imgElement = document.createElement('img');
-                    imgElement.src = building.image;
+                    imgElement.src = imageSrc;
                     imgElement.alt = 'Building Image';
                     imgWrapperDiv.appendChild(imgElement);
 

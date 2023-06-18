@@ -1,16 +1,23 @@
 {
   "files": {
-    "main.js": "/static/js/main.dcbce304.js",
-    "static/media/정q.jpg": "/static/media/정q.09c7a8d1ea0673e7a4ea.jpg",
-    "static/media/학술관.JPG": "/static/media/학술관.6d77a4c605f9b4a23552.JPG",
-    "static/media/혜화관.JPG": "/static/media/혜화관.05fa663ccaf5b9bb0abd.JPG",
-    "static/media/사회과학관.jpg": "/static/media/사회과학관.063bf130142ee2ac7655.jpg",
-    "static/media/만해관.jpg": "/static/media/만해관.25b405a2e07b66af33d5.jpg",
-    "static/media/상록원.JPG": "/static/media/상록원.a28b0ffe81256d1ca28a.JPG",
-    "static/media/명진관.jpg": "/static/media/명진관.c2817a0235f7f92e6834.jpg",
-    "static/media/학생회관.jpg": "/static/media/학생회관.1ddca062feb6c3c30251.jpg",
-    "static/media/법학관.jpg": "/static/media/법학관.7197559a535d65bf828e.jpg",
-    "static/media/경영관.jpg": "/static/media/경영관.0e3efeab652720e56d13.jpg",
+    "main.js": "/static/js/main.4ac8f1d7.js",
+    "static/media/Q.jpg": "/static/media/Q.09c7a8d1ea0673e7a4ea.jpg",
+    "static/media/D2.jpg": "/static/media/D2.feb40213dc842699e3a2.jpg",
+    "static/media/P.jpg": "/static/media/P.d57989e1c4c96df25ea0.jpg",
+    "static/media/D9.jpg": "/static/media/D9.a29e6f5c77c664ee0410.jpg",
+    "static/media/D0.jpg": "/static/media/D0.12b9558d93f0c28b6533.jpg",
+    "static/media/L.jpg": "/static/media/L.6d77a4c605f9b4a23552.jpg",
+    "static/media/D1.jpg": "/static/media/D1.e3f1fc5057547f7ccae4.jpg",
+    "static/media/R20.jpg": "/static/media/R20.6b09215986a2d671dbda.jpg",
+    "static/media/H.jpg": "/static/media/H.05fa663ccaf5b9bb0abd.jpg",
+    "static/media/G2.jpg": "/static/media/G2.bdfe354d76d3571660fe.jpg",
+    "static/media/M.jpg": "/static/media/M.063bf130142ee2ac7655.jpg",
+    "static/media/BM.jpg": "/static/media/BM.25b405a2e07b66af33d5.jpg",
+    "static/media/FF.jpg": "/static/media/FF.a28b0ffe81256d1ca28a.jpg",
+    "static/media/A.jpg": "/static/media/A.c2817a0235f7f92e6834.jpg",
+    "static/media/Z.jpg": "/static/media/Z.1ddca062feb6c3c30251.jpg",
+    "static/media/BB.jpg": "/static/media/BB.7197559a535d65bf828e.jpg",
+    "static/media/MK.jpg": "/static/media/MK.0e3efeab652720e56d13.jpg",
     "static/media/R36.jpg": "/static/media/R36.a7880567d14657eb7a07.jpg",
     "static/media/R53.jpg": "/static/media/R53.cfc13cc5cd8f07c17e8e.jpg",
     "static/media/D4.jpg": "/static/media/D4.7d747024c635d906930e.jpg",
@@ -30,7 +37,7 @@
     "static/media/Y0.jpg": "/static/media/Y0.51046aead40b721c45e1.jpg",
     "static/media/O0_1.jpg": "/static/media/O0_1.beebd3475cb0a23d2146.jpg",
     "static/media/K2.jpg": "/static/media/K2.6cd9750adbc18dad0137.jpg",
-    "static/media/H0.JPG": "/static/media/H0.1302edee574dbf9445aa.JPG",
+    "static/media/H0.jpg": "/static/media/H0.1302edee574dbf9445aa.jpg",
     "static/media/사회과학관VM.jpg": "/static/media/사회과학관VM.365e57e7aa668b66c9cb.jpg",
     "static/media/D8.jpg": "/static/media/D8.25215fe016d3655748f9.jpg",
     "static/media/R31.jpg": "/static/media/R31.9c3f144b7d5e723e0fe7.jpg",
@@ -60,9 +67,9 @@
     "static/media/camera.png": "/static/media/camera.ce5238812ddd0bdcd47a.png",
     "static/media/ROADMAP_6.png": "/static/media/ROADMAP_6.85b352c95fa8349d441a.png",
     "index.html": "/index.html",
-    "main.dcbce304.js.map": "/static/js/main.dcbce304.js.map"
+    "main.4ac8f1d7.js.map": "/static/js/main.4ac8f1d7.js.map"
   },
   "entrypoints": [
-    "static/js/main.dcbce304.js"
+    "static/js/main.4ac8f1d7.js"
   ]
 }
