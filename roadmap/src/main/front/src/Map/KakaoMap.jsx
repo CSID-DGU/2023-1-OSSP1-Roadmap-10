@@ -23,8 +23,6 @@ function KakaoMap() {
     const [finish, SetFinish] = useState(storedData || '')
     const [shortestPath, setShortestPath] = useState([])
     const [dLatLng, setDLatLng] = useState([])
-    const [selectStart, setSelectStart] = useState(null)
-    const [selectFinish, setSelectFinish] = useState(null)
     const [searchClicked, setSearchClicked] = useState(false)
     const [image,setImage] = useState([])
 
@@ -47,8 +45,6 @@ function KakaoMap() {
                         center: new window.kakao.maps.LatLng(37.55803420483414, 127.00088278271602),
                         level: 3
                     };
-
-                    console.log(storedData);
 
                     const newMap = new window.kakao.maps.Map(container, options);
                     settingMap(newMap);
@@ -79,25 +75,12 @@ function KakaoMap() {
             path.forEach((line) => line.setMap(null));
             setPath([]);
         }
-
-        /*if (searchClicked) {
-            if (map && markers && dLatLng && shortestPath) {
-                console.log("dLatLng updated:", dLatLng);
-                console.log("shortestPath updated:", shortestPath);
-                drawPath(dLatLng);
-                createMarker(dLatLng, shortestPath);
-            }
-
-            setSearchClicked(false); // Reset the searchClicked state variable
-        }*/
     }, [map, markers, stateMarker, dLatLng, shortestPath,path,iW]);
 
     useEffect(() => {
         if(map) {
             if (searchClicked) {
                 if (map && markers && dLatLng && shortestPath) {
-                    console.log("dLatLng updated:", dLatLng);
-                    console.log("shortestPath updated:", shortestPath);
                     drawPath(dLatLng);
                     createMarker(dLatLng, shortestPath);
                 }
@@ -137,7 +120,6 @@ function KakaoMap() {
             if(imgAdd !== null){
                 const img = new Image();
                 img.src = imgAdd;
-                console.log(imgAdd + " 여기 마커 있어요.");
                 return true;
             }
             else {
@@ -172,7 +154,6 @@ function KakaoMap() {
                     }
 
                     if(imgChk(node)===true){
-                        console.log("exist");
                         const camera = "camera.png";
                         const imgCode = node + ".jpg"
                         const infoImg = getImgAdd(imgCode)
@@ -242,7 +223,6 @@ function KakaoMap() {
 
                         window.kakao.maps.event.addListener(newMarker, 'click', function(){
                             closeOverlay();
-                            console.log("버튼 눌림")
                         });
 
                         newMarker.setMap(map);
@@ -320,7 +300,6 @@ function KakaoMap() {
                         })
                             .then(response => {
                                 const nestedList = response.data; // Assuming the response contains the List<List<Double>> structure
-                                console.log(nestedList);
                                 // Handle the nestedList data here
                                 setImage(nestedList.image)
                                 setShortestPath(nestedList.shortestPath);

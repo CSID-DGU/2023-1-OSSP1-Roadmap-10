@@ -27,7 +27,6 @@ public class AppRunner implements ApplicationRunner {
         Resource resource = resourceLoader.getResource("classpath:static/json/node.json");
         ObjectMapper objectMapper = new ObjectMapper();
         nodeArr = objectMapper.readValue(resource.getInputStream(), Node[].class);
-        System.out.println(nodeArr.length);
     }
 
     public Node[] getNodeArr() {

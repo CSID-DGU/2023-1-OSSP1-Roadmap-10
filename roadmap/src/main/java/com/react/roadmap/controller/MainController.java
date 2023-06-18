@@ -28,8 +28,6 @@ public class MainController {
 
     @GetMapping("map")
     public Map<String, Object> dataInsert(@RequestParam String start, @RequestParam String finish) {
-        System.out.println("Start: " + start);
-        System.out.println("Finish: " + finish);
         Node[] nodeArr = appRunner.getNodeArr();
 
         // Call the findShortestPath method and specify the start and finish nodes
@@ -39,8 +37,7 @@ public class MainController {
 
         List<List<Double>> dLatLng = getLatLng.getLatLng(nodeArr, shortestPath);
 
-        System.out.println("Shortest Path: " + shortestPath);
-        System.out.println("dLatLng: " + dLatLng);
+
 
         // Create a Map to store the results
         Map<String, Object> result = new HashMap<>();
