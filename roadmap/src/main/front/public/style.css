@@ -314,6 +314,8 @@ select option [value = ""][disabled]{
     }
     .overlay-wrapper .overlay-text-wrapper{
         width : 50%;
+        height: 80px;
+        margin: 0;
     }
     .overlay-wrapper .overlay-text-wrapper p{
         font-size: 50%;
