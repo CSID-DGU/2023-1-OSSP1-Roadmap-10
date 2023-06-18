@@ -14,20 +14,20 @@ const loc = LocList();
 function KakaoMap() {
 
     const storedData = localStorage.getItem('myData');
+
     const [map, settingMap] = useState(null);
     const [markers, setMarkers] = useState([])
     const [iW, addIW] = useState([])
     const [path, setPath] = useState(null)
     const [stateMarker, setStateMarker] = useState(true)
     const [start, SetStart] = useState()
-    const [finish, SetFinish] = useState(storedData)
+    const [finish, SetFinish] = useState(storedData || '')
     const [shortestPath, setShortestPath] = useState([])
     const [dLatLng, setDLatLng] = useState([])
     const [selectStart, setSelectStart] = useState(null)
     const [selectFinish, setSelectFinish] = useState(null)
     const [searchClicked, setSearchClicked] = useState(false)
     const [image,setImage] = useState([])
-
 
 
 
@@ -61,6 +61,10 @@ function KakaoMap() {
                     newMap.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
                 });
             };
+
+            window.onunload = () => {
+                localStorage.removeItem('myData');
+            }
 
             document.head.appendChild(script);
             return () => {
