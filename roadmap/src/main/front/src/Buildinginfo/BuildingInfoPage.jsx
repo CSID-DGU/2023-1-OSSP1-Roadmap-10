@@ -37,7 +37,7 @@ function BuildingInfoPage() {
                 if (render1) {
                     const container = document.getElementById('map');
                     const options = {
-                        center: new window.kakao.maps.LatLng(loc[0].Lat, loc[0].Lng),
+                        center: new window.kakao.maps.LatLng(37.55803420483414, 127.00088278271602),
                         level: 3
                     };
 
