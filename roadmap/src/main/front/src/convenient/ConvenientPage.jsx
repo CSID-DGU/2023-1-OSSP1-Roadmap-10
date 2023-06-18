@@ -25,7 +25,7 @@ function ConvenientPage() {
     }
     const getImgAdd = (imgName) => {
         try {
-            const imgAdd = require(`../images/${imgName}`);
+            const imgAdd = require(`../images/convenient/${imgName}`);
             return imgAdd;
         } catch (error) {
             return null;
@@ -120,8 +120,10 @@ function ConvenientPage() {
                         removable: true,
                         zIndex: 5
                     })
+                    const convenientImage = building.code + "_" + convNum + ".png"
 
-                    const imageSrc = getImgAdd(building.image)
+                    const imageSrc = getImgAdd(convenientImage)
+                    console.log(convenientImage)
 
                     const wrapperDiv = document.createElement('div');
                     wrapperDiv.classList.add('overlay-wrapper-onlyimg');
