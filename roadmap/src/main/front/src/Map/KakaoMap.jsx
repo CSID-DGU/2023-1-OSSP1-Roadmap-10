@@ -25,6 +25,7 @@ function KakaoMap() {
     const [dLatLng, setDLatLng] = useState([])
     const [searchClicked, setSearchClicked] = useState(false)
     const [image,setImage] = useState([])
+    const [evMarkers, setEvMarkers] = useState([]);
 
 
 
@@ -127,9 +128,9 @@ function KakaoMap() {
             }
         } catch (error) {
             console.error();
-
         }
     }
+
 
     function createMarker(dLatLng, shortestPath) {
         if (map) {
@@ -137,6 +138,7 @@ function KakaoMap() {
                 deleteMarker(); // Delete previously existing markers
                 const newMarkers = [];
                 const newiW = [];
+                const tempEvMarkers = [];
                 for (let i = 0; i < dLatLng.length; i++) {
 
                     const node = shortestPath[i];
@@ -153,7 +155,26 @@ function KakaoMap() {
                         newMarkers.push(newMarker);
                     }
 
-                    if(imgChk(node)===true){
+                    console.log(node);
+
+                    if(node[0] === 'V') {
+                        const ev = "ev.png";
+                        const imageSrc = getImgAdd(ev), // 마커이미지의 주소입니다
+                            imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+                            imageOption = {offset: new kakao.maps.Point(14, 20)};
+
+                        const markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+                            markerPosition = new window.kakao.maps.LatLng(
+                                parseFloat(dLatLng[i][0]),
+                                parseFloat(dLatLng[i][1])
+                            );
+                        const newMarker = new window.kakao.maps.Marker({
+                            position: markerPosition,
+                            image: markerImage,
+                        });
+                        newMarker.setMap(map);
+                        tempEvMarkers.push(newMarker);
+                    } else if(imgChk(node)===true){
                         const camera = "camera.png";
                         const imgCode = node + ".jpg"
                         const infoImg = getImgAdd(imgCode)
@@ -164,9 +185,9 @@ function KakaoMap() {
 
                         const markerImage  = new window.kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
                             markerPosition = new window.kakao.maps.LatLng(
-                            parseFloat(dLatLng[i][0]),
-                            parseFloat(dLatLng[i][1])
-                        );
+                                parseFloat(dLatLng[i][0]),
+                                parseFloat(dLatLng[i][1])
+                            );
                         const newMarker = new window.kakao.maps.Marker({
                             position: markerPosition,
                             image: markerImage,
@@ -234,6 +255,11 @@ function KakaoMap() {
                 }
                 addIW((newiW))
                 setMarkers(newMarkers); // Set the new markers in the state variable
+                setEvMarkers(tempEvMarkers);
+
+                evMarkers.forEach((marker) => {
+                    marker.setMap(null);
+                });
             } catch {
                 console.log("createMarker Error");
             }
