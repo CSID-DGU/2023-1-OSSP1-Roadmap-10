@@ -24,6 +24,7 @@
 
 ## 기존 프로젝트 소개
 기존 프로젝트는 <You're Webcome> 이라는 웹페이지로, 2.5D 지도를 통해 친숙한 이미지로 학교에서의 루트나 편의시설의 위치 등을 소개하는 프로그램
+<https://github.com/CSID-DGU/2022-2-OSSProj-You_are_webcome-9.git>
 
 
 
