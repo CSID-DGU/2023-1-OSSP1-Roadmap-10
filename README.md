@@ -1,21 +1,27 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Roadmap&fontSize=90&animation=fadeIn&fontAlignY=38&desc=OPPS1&descAlignY=51&descAlign=62)
 
+
 # 2023-1-OPPS1-Roadmap-10
 2023학년도 공개SW프로젝트_01 Roadmap 팀입니다.<br>
-[웹페이지 이동](www.dguroadmap.site)
+<img src = "https://github.com/CSID-DGU/2023-1-OPPS1-Roadmap-10/assets/90263566/2a77795d-1ca6-43db-915d-584514dda8ba" width = "30%" height = "30%">
 
+www.dguroadmap.site
+
+
+
+## 🧑🏻‍💻팀원 소개
 |박기범|박윤서|김민석|양승엽|김건호|
 |:-:|:-:|:-:|:-:|:-:|
-|<img src="https://avatars.githubusercontent.com/u/97174348?v=4" width="150px" />|<img src="https://avatars.githubusercontent.com/u/90263566?v=4" width="150px" />|<img src="https://avatars.githubusercontent.com/u/126749539?v=4" width="150px" />|<img src="https://avatars.githubusercontent.com/u/122291076?v=4" width="150px" />|<img src="https://avatars.githubusercontent.com/u/129247495?v=4" width="150px" />|
+|<img src="https://avatars.githubusercontent.com/u/97174348?v=4" width="100px" />|<img src="https://avatars.githubusercontent.com/u/90263566?v=4" width="100px" />|<img src="https://avatars.githubusercontent.com/u/126749539?v=4" width="100px" />|<img src="https://avatars.githubusercontent.com/u/122291076?v=4" width="100px" />|<img src="https://avatars.githubusercontent.com/u/129247495?v=4" width="100px" />|
 |[@Manhye](https://github.com/Manhye)|[@00pys](https://github.com/00pys)|[@4pple4ree](https://github.com/4pple4ree)|[@ovo100](https://github.com/ovo100)|[@GeonHo1225](https://github.com/GeonHo1225)|
 
-##
 
-##
-<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=white"/> <img src="https://img.shields.io/badge/Intellij-000000?style=flat-square&logo=intellijidea&logoColor=white"/> 
+## 🛠️기술 스택
+<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=white"/> <img src="https://img.shields.io/badge/Intellij-000000?style=flat-square&logo=intellijidea&logoColor=white"/> <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
 
-##
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/> <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>
 
 ## 프로젝트의 목적
 기존 프로젝트인 You're Webcome(동국대 네비게이션)을 오픈소스를 이용하여 더 좋은 프로그램으로 개선하는 프로젝트다.
@@ -93,7 +99,7 @@
 이에 더해, 엘리베이터와 같이 경사와 거리가 없고, 단순 고도차이만 있는 간선의 경우 고도 차이 값을 그대로 가져온 뒤 기존 가중치인
 '( 가중치 ) = ( 1 + 경사도 ) x 거리' 에서 새로운 가중치인 '( 가중치 ) = 0.15 x 경사도 + 3.5 ) x 거리' 로 변환하는 과정에서 주변 값들에 비례하게 증가시킨 값을 가중치로 설정함.
 
-
+## 페이지 설명
 
 ### 건물 경로 페이지
 상단의 드롭다운 메뉴를 통해 출발지와 목적지를 선택 후 경로 탐색을 누르면 경로를 생성함.
